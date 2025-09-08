@@ -67,7 +67,7 @@ export default function Welcome() {
           <div className="w-20 h-20 mx-auto mb-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
             <Users className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold mb-4">World ID Referral</h1>
+          <h1 className="text-3xl font-bold mb-4">Word Reff</h1>
           <p className="text-white text-opacity-90 text-lg mb-8">
             สมัคร World ID ฟรี<br />
             รับรายได้ สูงสุด 5000 บาทได้ง่ายๆ
