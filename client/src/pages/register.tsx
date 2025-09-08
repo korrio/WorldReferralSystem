@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { ArrowLeft, Globe } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToastNotification } from "@/components/ui/toast-notification";
 
 export default function Register() {
   const [toast, setToast] = useState({ message: "", isVisible: false, type: "success" as "success" | "error" });
+  const [, navigate] = useLocation();
 
   const handleWorldIdLogin = () => {
     setToast({ 
@@ -15,14 +16,10 @@ export default function Register() {
       type: "success" 
     });
     
-    // TODO: Integrate with actual World ID authentication
+    // ชั่วคราว: นำไปหน้า Profile โดยตรง
     setTimeout(() => {
-      setToast({ 
-        message: "การเข้าสู่ระบบด้วย World ID ยังอยู่ระหว่างการพัฒนา", 
-        isVisible: true, 
-        type: "success" 
-      });
-    }, 1000);
+      navigate("/profile");
+    }, 1500);
   };
 
   return (

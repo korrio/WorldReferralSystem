@@ -7,12 +7,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 // Pages
 import Welcome from "@/pages/welcome";
 import Register from "@/pages/register";
+import Profile from "@/pages/profile";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Welcome} />
       <Route path="/register" component={Register} />
+      <Route path="/profile" component={Profile} />
       
       {/* Fallback */}
       <Route>
