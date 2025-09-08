@@ -125,7 +125,7 @@ export default function Welcome() {
                       ระบบจัดสรรอัตโนมัติ
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      เราจัดสรรอย่างเป็นธรรม ให้สมาชิกที่ได้รับน้อยที่สุดก่อน
+                      เพียงแค่ฝาก refferal link  ของคุณไว้ เราจะหาคนมาสมัครให้ จนกว่าจะครบ 10 คนเอง
                     </p>
                   </div>
                 </div>
