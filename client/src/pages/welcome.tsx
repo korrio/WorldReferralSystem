@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Users, DollarSign, Zap, ExternalLink } from "lucide-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,11 @@ import { referralApi } from "@/lib/api";
 
 export default function Welcome() {
   const [toast, setToast] = useState({ message: "", isVisible: false, type: "success" as "success" | "error" });
+
+  // ติดตามผู้เข้าชมเมื่อเข้าหน้าเว็บ
+  useEffect(() => {
+    referralApi.trackVisit().catch(console.error);
+  }, []);
 
   // ดึงสถิติปัจจุบัน
   const { data: stats } = useQuery({
@@ -175,25 +180,21 @@ export default function Welcome() {
               <Card>
                 <CardContent className="pt-4 text-center">
                   <div className="text-2xl font-bold text-primary">
-                    {stats.totalMembers}
+                    {stats.totalVisitors}
                   </div>
-                  <div className="text-sm text-muted-foreground">สมาชิก</div>
+                  <div className="text-sm text-muted-foreground">คนเข้าชมทั้งหมด</div>
                 </CardContent>
               </Card>
               
               <Card>
                 <CardContent className="pt-4 text-center">
                   <div className="text-2xl font-bold text-secondary">
-                    {stats.totalAssignments}
+                    {stats.totalSignups}
                   </div>
-                  <div className="text-sm text-muted-foreground">ผู้สมัคร</div>
+                  <div className="text-sm text-muted-foreground">สมัครผ่าน WordReff</div>
                 </CardContent>
               </Card>
             </div>
-            
-            <p className="text-center text-muted-foreground text-sm mt-4">
-              เฉลี่ย {stats.averageAssignmentsPerMember.toFixed(1)} คนต่อสมาชิก
-            </p>
           </div>
         </div>
       )}
