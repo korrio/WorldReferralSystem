@@ -61,7 +61,7 @@ export default function Register() {
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>✅ เราหาผู้สมัคร World ID ให้คุณอัตโนมัติ</li>
-                <li>✅ รับรายได้สูงสุด 5,000 บาท จาก World ID</li>
+                <li>✅ ระบบจะช่วยคุณได้ค่าแนะนำคนละประมาณ 500 บาท สูงสุด 10 คน ( ตามนโยบายของ World ID)</li>
                 <li>✅ ไม่ต้องทำการตลาดหรือหาคนเอง</li>
                 <li>✅ ระบบจัดสรรอย่างเป็นธรรม</li>
               </ul>
