@@ -1,2 +1,183 @@
-// Storage interface will be built step by step
-export {};
+import { type Member, type InsertMember, type ReferralAssignment, type InsertReferralAssignment } from "@shared/schema";
+import { randomUUID } from "crypto";
+
+export interface IStorage {
+  // Member operations
+  getAllMembers(): Promise<Member[]>;
+  getMember(id: string): Promise<Member | undefined>;
+  createMember(member: InsertMember): Promise<Member>;
+  updateMember(id: string, updates: Partial<Member>): Promise<Member | undefined>;
+  
+  // Referral assignment operations  
+  createReferralAssignment(assignment: InsertReferralAssignment & { memberId: string }): Promise<ReferralAssignment>;
+  getReferralAssignmentsByMember(memberId: string): Promise<ReferralAssignment[]>;
+  getAllReferralAssignments(): Promise<ReferralAssignment[]>;
+  
+  // Business logic operations
+  getNextAvailableMember(): Promise<Member | undefined>;
+  incrementMemberAssignments(memberId: string): Promise<void>;
+  getAssignmentStats(): Promise<{
+    totalMembers: number;
+    activeMembers: number; 
+    totalAssignments: number;
+    averageAssignmentsPerMember: number;
+  }>;
+}
+
+export class MemStorage implements IStorage {
+  private members: Map<string, Member>;
+  private referralAssignments: Map<string, ReferralAssignment>;
+
+  constructor() {
+    this.members = new Map();
+    this.referralAssignments = new Map();
+    
+    // เพิ่มข้อมูลตัวอย่างสำหรับทดสอบ
+    this.seedData();
+  }
+
+  private seedData() {
+    // เพิ่มสมาชิกตัวอย่าง
+    const sampleMembers = [
+      {
+        id: "member-1",
+        name: "สมชาย ใจดี",
+        worldIdReferralLink: "https://worldcoin.org/join/ABCD1234",
+        currentAssignments: 2,
+        maxAssignments: 10,
+        isActive: true,
+        totalEarned: 100,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "member-2", 
+        name: "สมศรี สุขสม",
+        worldIdReferralLink: "https://worldcoin.org/join/EFGH5678",
+        currentAssignments: 1,
+        maxAssignments: 10,
+        isActive: true,
+        totalEarned: 50,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: "member-3",
+        name: "วิชัย มั่นคง", 
+        worldIdReferralLink: "https://worldcoin.org/join/IJKL9012",
+        currentAssignments: 0,
+        maxAssignments: 10,
+        isActive: true,
+        totalEarned: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ];
+
+    sampleMembers.forEach(member => {
+      this.members.set(member.id, member);
+    });
+  }
+
+  async getAllMembers(): Promise<Member[]> {
+    return Array.from(this.members.values());
+  }
+
+  async getMember(id: string): Promise<Member | undefined> {
+    return this.members.get(id);
+  }
+
+  async createMember(insertMember: InsertMember): Promise<Member> {
+    const id = randomUUID();
+    const member: Member = {
+      ...insertMember,
+      id,
+      currentAssignments: 0,
+      maxAssignments: insertMember.maxAssignments || 10,
+      isActive: true,
+      totalEarned: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.members.set(id, member);
+    return member;
+  }
+
+  async updateMember(id: string, updates: Partial<Member>): Promise<Member | undefined> {
+    const member = this.members.get(id);
+    if (!member) return undefined;
+    
+    const updatedMember = { ...member, ...updates, updatedAt: new Date() };
+    this.members.set(id, updatedMember);
+    return updatedMember;
+  }
+
+  async createReferralAssignment(assignmentData: InsertReferralAssignment & { memberId: string }): Promise<ReferralAssignment> {
+    const id = randomUUID();
+    const member = this.members.get(assignmentData.memberId);
+    
+    const assignment: ReferralAssignment = {
+      id,
+      memberId: assignmentData.memberId,
+      ipAddress: assignmentData.ipAddress || null,
+      userAgent: assignmentData.userAgent || null,
+      referralUsed: member?.worldIdReferralLink || "",
+      status: "pending",
+      assignedAt: new Date(),
+      completedAt: null,
+    };
+    
+    this.referralAssignments.set(id, assignment);
+    return assignment;
+  }
+
+  async getReferralAssignmentsByMember(memberId: string): Promise<ReferralAssignment[]> {
+    return Array.from(this.referralAssignments.values())
+      .filter(assignment => assignment.memberId === memberId);
+  }
+
+  async getAllReferralAssignments(): Promise<ReferralAssignment[]> {
+    return Array.from(this.referralAssignments.values());
+  }
+
+  async getNextAvailableMember(): Promise<Member | undefined> {
+    const activeMembers = Array.from(this.members.values())
+      .filter(member => member.isActive && member.currentAssignments < member.maxAssignments);
+    
+    if (activeMembers.length === 0) return undefined;
+    
+    // เรียงตาม currentAssignments น้อยที่สุดก่อน (round-robin)
+    activeMembers.sort((a, b) => a.currentAssignments - b.currentAssignments);
+    
+    return activeMembers[0];
+  }
+
+  async incrementMemberAssignments(memberId: string): Promise<void> {
+    const member = this.members.get(memberId);
+    if (member) {
+      await this.updateMember(memberId, {
+        currentAssignments: member.currentAssignments + 1,
+      });
+    }
+  }
+
+  async getAssignmentStats(): Promise<{
+    totalMembers: number;
+    activeMembers: number;
+    totalAssignments: number;
+    averageAssignmentsPerMember: number;
+  }> {
+    const allMembers = await this.getAllMembers();
+    const activeMembers = allMembers.filter(m => m.isActive);
+    const totalAssignments = allMembers.reduce((sum, m) => sum + m.currentAssignments, 0);
+    
+    return {
+      totalMembers: allMembers.length,
+      activeMembers: activeMembers.length,
+      totalAssignments,
+      averageAssignmentsPerMember: allMembers.length > 0 ? totalAssignments / allMembers.length : 0,
+    };
+  }
+}
+
+export const storage = new MemStorage();
