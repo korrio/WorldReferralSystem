@@ -13,24 +13,30 @@ export interface IStorage {
   getReferralAssignmentsByMember(memberId: string): Promise<ReferralAssignment[]>;
   getAllReferralAssignments(): Promise<ReferralAssignment[]>;
   
+  // Visitor tracking operations
+  trackPageVisit(ipAddress?: string, userAgent?: string): Promise<void>;
+  getTotalVisitors(): Promise<number>;
+  
   // Business logic operations
   getNextAvailableMember(): Promise<Member | undefined>;
   incrementMemberAssignments(memberId: string): Promise<void>;
   getAssignmentStats(): Promise<{
-    totalMembers: number;
-    activeMembers: number; 
-    totalAssignments: number;
-    averageAssignmentsPerMember: number;
+    totalVisitors: number;
+    totalSignups: number;
   }>;
 }
 
 export class MemStorage implements IStorage {
   private members: Map<string, Member>;
   private referralAssignments: Map<string, ReferralAssignment>;
+  private visitorIps: Set<string>; // เก็บ IP ที่เข้าชมแล้ว (unique visitors)
+  private totalPageViews: number; // จำนวนครั้งที่เข้าชมทั้งหมด
 
   constructor() {
     this.members = new Map();
     this.referralAssignments = new Map();
+    this.visitorIps = new Set();
+    this.totalPageViews = 0;
     
     // เพิ่มข้อมูลตัวอย่างสำหรับทดสอบ
     this.seedData();
@@ -161,21 +167,26 @@ export class MemStorage implements IStorage {
     }
   }
 
+  async trackPageVisit(ipAddress?: string, userAgent?: string): Promise<void> {
+    this.totalPageViews++;
+    if (ipAddress) {
+      this.visitorIps.add(ipAddress);
+    }
+  }
+
+  async getTotalVisitors(): Promise<number> {
+    return this.visitorIps.size;
+  }
+
   async getAssignmentStats(): Promise<{
-    totalMembers: number;
-    activeMembers: number;
-    totalAssignments: number;
-    averageAssignmentsPerMember: number;
+    totalVisitors: number;
+    totalSignups: number;
   }> {
-    const allMembers = await this.getAllMembers();
-    const activeMembers = allMembers.filter(m => m.isActive);
-    const totalAssignments = allMembers.reduce((sum, m) => sum + m.currentAssignments, 0);
+    const allAssignments = await this.getAllReferralAssignments();
     
     return {
-      totalMembers: allMembers.length,
-      activeMembers: activeMembers.length,
-      totalAssignments,
-      averageAssignmentsPerMember: allMembers.length > 0 ? totalAssignments / allMembers.length : 0,
+      totalVisitors: this.totalPageViews,
+      totalSignups: allAssignments.length,
     };
   }
 }
