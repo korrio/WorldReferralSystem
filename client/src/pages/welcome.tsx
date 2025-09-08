@@ -104,10 +104,10 @@ export default function Welcome() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-card-foreground mb-2">
-                      ช่วยสมาชิกได้รับรายได้
+                      ช่วยหาสมาชิก ให้ครบ 10 คนเร็วขึ้น
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      การสมัครของคุณจะช่วยให้สมาชิกที่มี World ID แล้วได้รับรายได้สูงสุด 500 บาท
+                      รับเงินประมาณ 5000 บาทจาก world id เร็วขึ้น
                     </p>
                   </div>
                 </div>
