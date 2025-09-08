@@ -11,17 +11,52 @@ import { userApi } from "@/lib/api";
 export default function ReferralManager() {
   const { user } = useAuth();
 
-  const { data: stats, isLoading: statsLoading } = useQuery({
-    queryKey: ["/api/users", user?.id, "stats"],
-    queryFn: () => userApi.getUserStats(user!.id),
-    enabled: !!user,
-  });
+  // Mock stats data for UI testing
+  const stats = {
+    totalReferrals: 3,
+    verifiedReferrals: 2, 
+    pendingReferrals: 1,
+    remainingSlots: 2,
+    totalEarnings: 100,
+    progressPercentage: 60,
+  };
 
-  const { data: referrals, isLoading: referralsLoading } = useQuery({
-    queryKey: ["/api/users", user?.id, "referrals"],
-    queryFn: () => userApi.getUserReferrals(user!.id),
-    enabled: !!user,
-  });
+  // Mock referrals data for UI testing
+  const referrals = [
+    {
+      id: "ref-1",
+      referredName: "สมชาย ใจดี",
+      referredPhone: "0812345678",
+      status: "verified",
+      earnings: 50,
+      assignedAt: new Date('2024-01-15'),
+      referrerId: user?.id || "",
+      verifiedAt: new Date('2024-01-16'),
+    },
+    {
+      id: "ref-2",
+      referredName: "สมศรี สุขสม", 
+      referredPhone: "0887654321",
+      status: "verified",
+      earnings: 50,
+      assignedAt: new Date('2024-01-14'),
+      referrerId: user?.id || "",
+      verifiedAt: new Date('2024-01-15'),
+    },
+    {
+      id: "ref-3",
+      referredName: "นายวิชัย มั่นคง",
+      referredPhone: "0898765432",
+      status: "pending", 
+      earnings: 50,
+      assignedAt: new Date('2024-01-16'),
+      referrerId: user?.id || "",
+      verifiedAt: null,
+    },
+  ];
+
+  const statsLoading = false;
+  const referralsLoading = false;
 
   if (!user) {
     return <div>กำลังโหลด...</div>;
@@ -76,7 +111,7 @@ export default function ReferralManager() {
           <Card className="shadow-sm text-center">
             <CardContent className="pt-4">
               <div className="text-2xl font-bold text-secondary" data-testid="total-assigned">
-                {statsLoading ? "..." : stats?.totalReferrals || 0}
+                {stats.totalReferrals}
               </div>
               <div className="text-sm text-muted-foreground">ผู้สมัครที่ได้รับ</div>
             </CardContent>
@@ -84,7 +119,7 @@ export default function ReferralManager() {
           <Card className="shadow-sm text-center">
             <CardContent className="pt-4">
               <div className="text-2xl font-bold text-primary" data-testid="available-slots">
-                {statsLoading ? "..." : stats?.remainingSlots || 5}
+                {stats.remainingSlots}
               </div>
               <div className="text-sm text-muted-foreground">สล็อตที่เหลือ</div>
             </CardContent>
@@ -103,7 +138,7 @@ export default function ReferralManager() {
                 <div className="text-muted-foreground">กำลังโหลด...</div>
               </div>
             </CardContent>
-          ) : referrals && referrals.length > 0 ? (
+          ) : referrals.length > 0 ? (
             <div className="divide-y divide-border">
               {referrals.map((referral) => (
                 <div key={referral.id} className="p-4 flex items-center justify-between">
@@ -139,7 +174,7 @@ export default function ReferralManager() {
           )}
 
           {/* Empty State for remaining slots */}
-          {stats && stats.remainingSlots > 0 && (
+          {stats.remainingSlots > 0 && (
             <div className="p-4 border-t border-border bg-muted bg-opacity-50">
               <div className="text-center py-8">
                 <Plus className="w-12 h-12 text-muted-foreground mx-auto mb-3" />

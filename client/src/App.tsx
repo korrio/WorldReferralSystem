@@ -58,53 +58,37 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 function Router() {
   return (
     <Switch>
-      {/* Public routes */}
+      {/* All routes are now accessible without authentication for UI testing */}
       <Route path="/">
-        <PublicRoute>
-          <Welcome />
-        </PublicRoute>
+        <Welcome />
       </Route>
       <Route path="/login">
-        <PublicRoute>
-          <Login />
-        </PublicRoute>
+        <Login />
       </Route>
       <Route path="/register">
-        <PublicRoute>
-          <Register />
-        </PublicRoute>
+        <Register />
       </Route>
-      
-      {/* Protected routes */}
       <Route path="/dashboard">
-        <ProtectedRoute>
-          <Dashboard />
-        </ProtectedRoute>
+        <Dashboard />
       </Route>
       <Route path="/referrals">
-        <ProtectedRoute>
-          <ReferralManager />
-        </ProtectedRoute>
+        <ReferralManager />
       </Route>
       <Route path="/earnings">
-        <ProtectedRoute>
-          <div className="min-h-screen flex items-center justify-center bg-background font-thai">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold mb-2">หน้ารายได้</h1>
-              <p className="text-muted-foreground">กำลังพัฒนา...</p>
-            </div>
+        <div className="min-h-screen flex items-center justify-center bg-background font-thai">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-2">หน้ารายได้</h1>
+            <p className="text-muted-foreground">กำลังพัฒนา...</p>
           </div>
-        </ProtectedRoute>
+        </div>
       </Route>
       <Route path="/profile">
-        <ProtectedRoute>
-          <div className="min-h-screen flex items-center justify-center bg-background font-thai">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold mb-2">โปรไฟล์</h1>
-              <p className="text-muted-foreground">กำลังพัฒนา...</p>
-            </div>
+        <div className="min-h-screen flex items-center justify-center bg-background font-thai">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-2">โปรไฟล์</h1>
+            <p className="text-muted-foreground">กำลังพัฒนา...</p>
           </div>
-        </ProtectedRoute>
+        </div>
       </Route>
       
       {/* Fallback to 404 */}

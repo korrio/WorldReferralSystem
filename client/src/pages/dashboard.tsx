@@ -13,17 +13,52 @@ export default function Dashboard() {
   const { user } = useAuth();
   const [toast, setToast] = useState({ message: "", isVisible: false, type: "success" as const });
 
-  const { data: stats, isLoading: statsLoading } = useQuery({
-    queryKey: ["/api/users", user?.id, "stats"],
-    queryFn: () => userApi.getUserStats(user!.id),
-    enabled: !!user,
-  });
+  // Mock stats data for UI testing
+  const stats = {
+    totalReferrals: 3,
+    verifiedReferrals: 2,
+    pendingReferrals: 1,
+    remainingSlots: 2,
+    totalEarnings: 100,
+    progressPercentage: 60,
+  };
 
-  const { data: referrals, isLoading: referralsLoading } = useQuery({
-    queryKey: ["/api/users", user?.id, "referrals"],
-    queryFn: () => userApi.getUserReferrals(user!.id),
-    enabled: !!user,
-  });
+  // Mock referrals data for UI testing
+  const referrals = [
+    {
+      id: "ref-1",
+      referredName: "สมชาย ใจดี",
+      referredPhone: "0812345678",
+      status: "verified",
+      earnings: 50,
+      assignedAt: new Date('2024-01-15'),
+      referrerId: user?.id || "",
+      verifiedAt: new Date('2024-01-16'),
+    },
+    {
+      id: "ref-2", 
+      referredName: "สมศรี สุขสม",
+      referredPhone: "0887654321",
+      status: "verified",
+      earnings: 50,
+      assignedAt: new Date('2024-01-14'),
+      referrerId: user?.id || "",
+      verifiedAt: new Date('2024-01-15'),
+    },
+    {
+      id: "ref-3",
+      referredName: "นายวิชัย มั่นคง",
+      referredPhone: "0898765432", 
+      status: "pending",
+      earnings: 50,
+      assignedAt: new Date('2024-01-16'),
+      referrerId: user?.id || "",
+      verifiedAt: null,
+    },
+  ];
+
+  const statsLoading = false;
+  const referralsLoading = false;
 
   const generateReferralLink = async () => {
     if (!user) return;
@@ -42,7 +77,7 @@ export default function Dashboard() {
     return <div>กำลังโหลด...</div>;
   }
 
-  const recentReferrals = referrals?.slice(0, 2) || [];
+  const recentReferrals = referrals.slice(0, 2);
 
   return (
     <div className="min-h-screen bg-background font-thai pb-20">
@@ -69,13 +104,13 @@ export default function Dashboard() {
               <div className="text-center">
                 <p className="text-white text-opacity-80 text-sm">รายได้ทั้งหมด</p>
                 <p className="text-2xl font-bold" data-testid="total-earnings">
-                  ฿{statsLoading ? "..." : stats?.totalEarnings || 0}
+                  ฿{stats.totalEarnings}
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-white text-opacity-80 text-sm">คนที่แนะนำ</p>
                 <p className="text-2xl font-bold" data-testid="referral-count">
-                  {statsLoading ? "..." : `${stats?.totalReferrals || 0}/10`}
+                  {`${stats.totalReferrals}/10`}
                 </p>
               </div>
             </div>
@@ -103,7 +138,7 @@ export default function Dashboard() {
                   />
                   <path 
                     className="text-primary stroke-current" 
-                    strokeDasharray={`${stats?.progressPercentage || 0}, 100`}
+                    strokeDasharray={`${stats.progressPercentage}, 100`}
                     strokeWidth="3" 
                     strokeLinecap="round" 
                     fill="none" 
@@ -113,7 +148,7 @@ export default function Dashboard() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-foreground" data-testid="progress-percentage">
-                      {stats?.progressPercentage || 0}%
+                      {stats.progressPercentage}%
                     </div>
                     <div className="text-xs text-muted-foreground">เสร็จสิ้น</div>
                   </div>
@@ -127,7 +162,7 @@ export default function Dashboard() {
                 <CardContent className="pt-3">
                   <p className="text-sm text-muted-foreground">คนที่ได้รับ</p>
                   <p className="text-xl font-bold text-secondary" data-testid="allocated-referrals">
-                    {stats?.totalReferrals || 0}
+                    {stats.totalReferrals}
                   </p>
                   <p className="text-xs text-muted-foreground">คน</p>
                 </CardContent>
@@ -136,7 +171,7 @@ export default function Dashboard() {
                 <CardContent className="pt-3">
                   <p className="text-sm text-muted-foreground">เหลือสล็อต</p>
                   <p className="text-xl font-bold text-primary" data-testid="remaining-slots">
-                    {stats?.remainingSlots || 5}
+                    {stats.remainingSlots}
                   </p>
                   <p className="text-xs text-muted-foreground">คน</p>
                 </CardContent>
