@@ -48,6 +48,14 @@ export default function Welcome() {
     assignReferralMutation.mutate();
   };
 
+  const handleJoinMember = () => {
+    setToast({ 
+      message: "ฟีเจอร์สมัครสมาชิกกำลังพัฒนา กรุณารอสักครู่", 
+      isVisible: true, 
+      type: "success" 
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background font-thai">
       {/* Hero Section */}
@@ -62,79 +70,51 @@ export default function Welcome() {
             รับรายได้ สูงสุด 5000 บาทได้ง่ายๆ
           </p>
           
-          {/* CTA Button */}
-          <Button
-            onClick={handleJoinWorldId}
-            disabled={assignReferralMutation.isPending}
-            className="w-full py-4 text-lg font-semibold bg-white text-primary hover:bg-gray-100 shadow-lg"
-            data-testid="button-join-worldid"
-          >
-            {assignReferralMutation.isPending ? (
-              <div className="flex items-center justify-center">
-                <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
-                กำลังจัดสรร...
-              </div>
-            ) : (
-              <div className="flex items-center justify-center">
-                <ExternalLink className="w-5 h-5 mr-2" />
-                สมัคร World ID ฟรี
-              </div>
-            )}
-          </Button>
-          
-          <p className="text-white text-opacity-80 text-sm mt-4">
-            * คลิกเพื่อเปิด World ID ในแท็บใหม่
-          </p>
-        </div>
-      </div>
+          {/* ตัวเลือก 1: ยังไม่มี World ID */}
+          <div className="space-y-4">
+            <div className="text-center">
+              <h3 className="text-white font-semibold mb-2">ยังไม่มี World ID?</h3>
+              <Button
+                onClick={handleJoinWorldId}
+                disabled={assignReferralMutation.isPending}
+                className="w-full py-4 text-lg font-semibold bg-white text-primary hover:bg-gray-100 shadow-lg"
+                data-testid="button-join-worldid"
+              >
+                {assignReferralMutation.isPending ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
+                    กำลังจัดสรร...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <ExternalLink className="w-5 h-5 mr-2" />
+                    สมัคร World ID ฟรี
+                  </div>
+                )}
+              </Button>
+            </div>
 
-      {/* Features Section */}
-      <div className="px-6 py-12">
-        <div className="max-w-md mx-auto">
-          <h2 className="text-2xl font-bold text-center text-foreground mb-8">
-            ทำไมต้องสมัครผ่านเรา?
-          </h2>
-          
-          <div className="space-y-6">
-            <Card className="shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <DollarSign className="w-6 h-6 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-card-foreground mb-2">
-                      ช่วยหาสมาชิก ให้ครบ 10 คนเร็วขึ้น
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      รับเงินประมาณ 5000 บาทจาก world id เร็วขึ้น
-                    </p>
-                  </div>
+            {/* ตัวเลือก 2: มี World ID แล้ว */}
+            <div className="text-center">
+              <h3 className="text-white font-semibold mb-2">มี World ID แล้ว?</h3>
+              <Button
+                onClick={handleJoinMember}
+                className="w-full py-4 text-lg font-semibold bg-white bg-opacity-20 text-white border-2 border-white hover:bg-white hover:text-primary transition-colors shadow-lg"
+                data-testid="button-join-member"
+              >
+                <div className="flex items-center justify-center">
+                  <Users className="w-5 h-5 mr-2" />
+                  สมัครสมาชิก WordReff
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-card-foreground mb-2">
-                      ระบบจัดสรรอัตโนมัติ
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      เพียงแค่ฝาก refferal link  ของคุณไว้ เราจะหาคนมาสมัครให้ จนกว่าจะครบ 10 คนเอง
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
+              </Button>
+              <p className="text-white text-opacity-80 text-xs mt-2">
+                เพื่อให้ระบบหารายได้ค่าแนะนำให้ สูงสุดประมาณ 5000 บาท
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
 
       {/* Stats Section */}
       {stats && (
