@@ -86,10 +86,7 @@ export default function Register() {
               >
                 <div className="flex items-center justify-center">
                   <Globe className="w-6 h-6 mr-3" />
-                  <div className="text-left">
-                    <div className="font-semibold">เข้าสู่ระบบด้วย World ID</div>
-                    <div className="text-xs text-gray-300">ปลอดภัยและรวดเร็ว</div>
-                  </div>
+                  <span className="font-semibold">เข้าสู่ระบบด้วย World ID</span>
                 </div>
               </Button>
 
