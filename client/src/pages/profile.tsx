@@ -13,11 +13,11 @@ export default function Profile() {
   const userData = {
     name: "สมชาย ใจดี",
     worldIdVerified: true,
-    referralLink: "https://worldcoin.org/join/ABCD1234",
+    referralLink: `${window.location.origin}/r/user123`, // ใช้ short URL ผ่านระบบเรา
+    originalWorldIdLink: "https://worldcoin.org/join/ABCD1234",
     currentReferrals: 3,
     maxReferrals: 10,
-    totalEarnings: 1500,
-    pendingEarnings: 500,
+    totalClicks: 15, // จำนวนคลิกลิงค์ทั้งหมด
     joinDate: "15 มกราคม 2567",
     status: "active" as const,
   };
@@ -120,28 +120,34 @@ export default function Profile() {
             </CardContent>
           </Card>
 
-          {/* Earnings Card */}
+          {/* Click Statistics Card */}
           <Card className="shadow-sm">
             <CardHeader>
               <CardTitle className="flex items-center text-lg">
-                <DollarSign className="w-5 h-5 mr-2 text-green-600" />
-                รายได้
+                <ExternalLink className="w-5 h-5 mr-2 text-blue-600" />
+                สถิติคลิกลิงค์
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-xl font-bold text-green-600">฿{userData.totalEarnings.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">รับแล้ว</div>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <div className="text-xl font-bold text-blue-600">{userData.totalClicks || 0}</div>
+                  <div className="text-sm text-muted-foreground">คลิกทั้งหมด</div>
                 </div>
-                <div className="text-center p-4 bg-orange-50 rounded-lg">
-                  <div className="text-xl font-bold text-orange-600">฿{userData.pendingEarnings.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">รอรับ</div>
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="text-xl font-bold text-green-600">{userData.currentReferrals}</div>
+                  <div className="text-sm text-muted-foreground">สมัครสำเร็จ</div>
+                </div>
+                <div className="p-4 bg-orange-50 rounded-lg">
+                  <div className="text-xl font-bold text-orange-600">
+                    {userData.totalClicks > 0 ? Math.round((userData.currentReferrals / userData.totalClicks) * 100) : 0}%
+                  </div>
+                  <div className="text-sm text-muted-foreground">อัตราแปลง</div>
                 </div>
               </div>
               
               <div className="text-center text-sm text-muted-foreground">
-                รายได้สูงสุด: ฿{(userData.maxReferrals * 500).toLocaleString()} บาท
+                คลิกลิงค์ = คนที่กดลิงค์ referral ของคุณ
               </div>
             </CardContent>
           </Card>
