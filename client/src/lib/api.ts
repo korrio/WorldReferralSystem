@@ -9,6 +9,11 @@ export const referralApi = {
     return response.json();
   },
   
+  trackVisit: async () => {
+    const response = await apiRequest("POST", "/api/track-visit", {});
+    return response.json();
+  },
+  
   getStats: async () => {
     const response = await apiRequest("GET", "/api/stats");
     return response.json();

@@ -79,16 +79,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // นับจำนวนผู้เข้าชม
+  app.post("/api/track-visit", async (req, res) => {
+    try {
+      const ipAddress = req.ip || req.connection.remoteAddress;
+      const userAgent = req.get('User-Agent');
+      
+      await storage.trackPageVisit(ipAddress, userAgent);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error tracking visit:", error);
+      res.status(500).json({ message: "เกิดข้อผิดพลาดในระบบ" });
+    }
+  });
+
   // ดูสถิติการจัดสรร
   app.get("/api/stats", async (req, res) => {
     try {
       const stats = await storage.getAssignmentStats();
-      const assignments = await storage.getAllReferralAssignments();
       
-      res.json({
-        ...stats,
-        recentAssignments: assignments.slice(-5).reverse(), // 5 รายการล่าสุด
-      });
+      res.json(stats);
     } catch (error) {
       res.status(500).json({ message: "เกิดข้อผิดพลาดในระบบ" });
     }
