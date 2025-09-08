@@ -132,23 +132,6 @@ export default function Welcome() {
               </CardContent>
             </Card>
 
-            <Card className="shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-accent bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Zap className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-card-foreground mb-2">
-                      ไม่มีค่าใช้จ่าย
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      สมัคร World ID ฟรี 100% ไม่มีค่าใช้จ่ายใดๆ
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
