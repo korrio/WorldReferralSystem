@@ -59,7 +59,7 @@ export default function Welcome() {
           <h1 className="text-3xl font-bold mb-4">World ID Referral</h1>
           <p className="text-white text-opacity-90 text-lg mb-8">
             สมัคร World ID ฟรี<br />
-            ช่วยเหลือสมาชิกได้รับรายได้
+            รับรายได้ สูงสุด 5000 บาทได้ง่ายๆ
           </p>
           
           {/* CTA Button */}
