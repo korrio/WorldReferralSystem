@@ -115,6 +115,53 @@ export default function Welcome() {
         </div>
       </div>
 
+      {/* Features Section */}
+      <div className="px-6 py-12">
+        <div className="max-w-md mx-auto">
+          <h2 className="text-2xl font-bold text-center text-foreground mb-8">
+            ทำไมต้องสมัครผ่านเรา?
+          </h2>
+          
+          <div className="space-y-6">
+            <Card className="shadow-sm">
+              <CardContent className="pt-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-secondary bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <DollarSign className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-card-foreground mb-2">
+                      ช่วยหาสมาชิก ให้ครบ 10 คนเร็วขึ้น
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      รับเงินประมาณ 5000 บาทจาก world id เร็วขึ้น
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-sm">
+              <CardContent className="pt-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-card-foreground mb-2">
+                      ระบบจัดสรรอัตโนมัติ
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      เพียงแค่ฝาก referral link ของคุณไว้ เราจะหาคนมาสมัครให้ จนกว่าจะครบ 10 คนเอง
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+          </div>
+        </div>
+      </div>
 
       {/* Stats Section */}
       {stats && (
