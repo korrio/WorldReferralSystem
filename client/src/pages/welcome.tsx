@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Users, DollarSign, Zap, ExternalLink } from "lucide-react";
+import { useLocation } from "wouter";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { referralApi } from "@/lib/api";
 
 export default function Welcome() {
   const [toast, setToast] = useState({ message: "", isVisible: false, type: "success" as "success" | "error" });
+  const [, navigate] = useLocation();
 
   // ติดตามผู้เข้าชมเมื่อเข้าหน้าเว็บ
   useEffect(() => {
@@ -54,11 +56,7 @@ export default function Welcome() {
   };
 
   const handleJoinMember = () => {
-    setToast({ 
-      message: "ฟีเจอร์สมัครสมาชิกกำลังพัฒนา กรุณารอสักครู่", 
-      isVisible: true, 
-      type: "success" 
-    });
+    navigate("/register");
   };
 
   return (
