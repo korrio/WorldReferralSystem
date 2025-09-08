@@ -99,7 +99,7 @@ export default function Welcome() {
               <h3 className="text-white font-semibold mb-2">มี World ID แล้ว?</h3>
               <Button
                 onClick={handleJoinMember}
-                className="w-full py-4 text-lg font-semibold bg-white bg-opacity-20 text-white border-2 border-white hover:bg-white hover:text-primary transition-colors shadow-lg"
+                className="w-full py-4 text-lg font-semibold bg-green-500 text-white border-2 border-green-400 hover:bg-green-600 hover:border-green-500 transition-colors shadow-lg"
                 data-testid="button-join-member"
               >
                 <div className="flex items-center justify-center">
