@@ -114,6 +114,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Referral redirect endpoint - นับคลิกแล้ว redirect ไป World ID
+  app.get("/r/:shortId", async (req, res) => {
+    try {
+      const { shortId } = req.params;
+      const member = await storage.getMemberByShortId(shortId);
+      
+      if (!member) {
+        return res.status(404).send("Referral link not found");
+      }
+      
+      // นับคลิก
+      const ipAddress = req.ip || req.connection.remoteAddress;
+      const userAgent = req.get('User-Agent');
+      await storage.trackReferralClick(member.id, ipAddress, userAgent);
+      
+      // Redirect ไป World ID จริง
+      res.redirect(member.worldIdReferralLink);
+    } catch (error) {
+      console.error("Error tracking referral click:", error);
+      res.status(500).send("Internal server error");
+    }
+  });
+
+  // API สำหรับดูสถิติคลิกของสมาชิก
+  app.get("/api/members/:id/clicks", async (req, res) => {
+    try {
+      const clicks = await storage.getReferralClicks(req.params.id);
+      res.json({ totalClicks: clicks });
+    } catch (error) {
+      res.status(500).json({ message: "เกิดข้อผิดพลาดในระบบ" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

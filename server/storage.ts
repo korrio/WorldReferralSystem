@@ -5,6 +5,7 @@ export interface IStorage {
   // Member operations
   getAllMembers(): Promise<Member[]>;
   getMember(id: string): Promise<Member | undefined>;
+  getMemberByShortId(shortId: string): Promise<Member | undefined>;
   createMember(member: InsertMember): Promise<Member>;
   updateMember(id: string, updates: Partial<Member>): Promise<Member | undefined>;
   
@@ -16,6 +17,10 @@ export interface IStorage {
   // Visitor tracking operations
   trackPageVisit(ipAddress?: string, userAgent?: string): Promise<void>;
   getTotalVisitors(): Promise<number>;
+  
+  // Click tracking operations
+  trackReferralClick(memberId: string, ipAddress?: string, userAgent?: string): Promise<void>;
+  getReferralClicks(memberId: string): Promise<number>;
   
   // Business logic operations
   getNextAvailableMember(): Promise<Member | undefined>;
@@ -31,12 +36,14 @@ export class MemStorage implements IStorage {
   private referralAssignments: Map<string, ReferralAssignment>;
   private visitorIps: Set<string>; // เก็บ IP ที่เข้าชมแล้ว (unique visitors)
   private totalPageViews: number; // จำนวนครั้งที่เข้าชมทั้งหมด
+  private referralClicks: Map<string, number>; // เก็บจำนวนคลิก referral link แต่ละ member
 
   constructor() {
     this.members = new Map();
     this.referralAssignments = new Map();
     this.visitorIps = new Set();
     this.totalPageViews = 0;
+    this.referralClicks = new Map();
     
     // เพิ่มข้อมูลตัวอย่างสำหรับทดสอบ
     this.seedData();
@@ -82,6 +89,8 @@ export class MemStorage implements IStorage {
 
     sampleMembers.forEach(member => {
       this.members.set(member.id, member);
+      // เพิ่มข้อมูลคลิกตัวอย่าง
+      this.referralClicks.set(member.id, Math.floor(Math.random() * 20) + 5);
     });
   }
 
@@ -91,6 +100,19 @@ export class MemStorage implements IStorage {
 
   async getMember(id: string): Promise<Member | undefined> {
     return this.members.get(id);
+  }
+
+  async getMemberByShortId(shortId: string): Promise<Member | undefined> {
+    // ในตัวอย่างนี้ shortId จะเป็น "user123" ที่ map กับ member-1
+    // ในระบบจริงควรมี mapping table หรือ field ใน member
+    const memberMap: Record<string, string> = {
+      "user123": "member-1",
+      "user456": "member-2", 
+      "user789": "member-3",
+    };
+    
+    const memberId = memberMap[shortId];
+    return memberId ? this.members.get(memberId) : undefined;
   }
 
   async createMember(insertMember: InsertMember): Promise<Member> {
@@ -176,6 +198,15 @@ export class MemStorage implements IStorage {
 
   async getTotalVisitors(): Promise<number> {
     return this.visitorIps.size;
+  }
+
+  async trackReferralClick(memberId: string, ipAddress?: string, userAgent?: string): Promise<void> {
+    const currentClicks = this.referralClicks.get(memberId) || 0;
+    this.referralClicks.set(memberId, currentClicks + 1);
+  }
+
+  async getReferralClicks(memberId: string): Promise<number> {
+    return this.referralClicks.get(memberId) || 0;
   }
 
   async getAssignmentStats(): Promise<{
