@@ -55,8 +55,8 @@ export default function Welcome() {
           </div>
           <h1 className="text-3xl font-bold mb-4">World Referral</h1>
           <p className="text-white text-opacity-90 text-lg mb-8">
-            สมัคร World ID ฟรี<br />
-            รับรายได้ สูงสุด 5000 บาทได้ง่ายๆ
+            เครื่องมือช่วยหา Referral<br />
+            ไม่มีเพื่อน เราช่วยหาให้คุณ ❤️
           </p>
           
           {/* ตัวเลือก 1: ยังไม่มี World ID */}
@@ -70,6 +70,16 @@ export default function Welcome() {
               />
             </div>
 
+            {/* Divider */}
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white border-opacity-30"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-10 bg-gradient-to-r from-transparent via-purple-500 to-transparent text-white text-opacity-80">หรือ</span>
+              </div>
+            </div>
+
             {/* ตัวเลือก 2: มี World ID แล้ว */}
             <div className="text-center">
               <h3 className="text-white font-semibold mb-2">มี World ID แล้ว?</h3>
@@ -80,7 +90,7 @@ export default function Welcome() {
               >
                 <div className="flex items-center justify-center">
                   <Users className="w-5 h-5 mr-2" />
-                  สมัครสมาชิก WordReff
+                  สมัครสมาชิก World Referral
                 </div>
               </Button>
               <p className="text-white text-opacity-80 text-xs mt-2">
