@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ToastNotification } from "@/components/ui/toast-notification";
 import { WorldIdSignupButton } from "@/components/WorldIdSignupButton";
-import { WorldIdLogo } from "@/components/WorldIdLogo";
+import { WorldRefLogo } from "@/components/WorldRefLogo";
 import { referralApi } from "@/lib/api";
 
 export default function Welcome() {
@@ -51,7 +51,7 @@ export default function Welcome() {
       <div className="gradient-bg text-white px-6 pt-16 pb-12">
         <div className="max-w-md mx-auto text-center">
           <div className="mx-auto mb-6 flex items-center justify-center">
-            <WorldIdLogo width={80} height={80} />
+            <WorldRefLogo width={80} height={80} />
           </div>
           <h1 className="text-3xl font-bold mb-4">World Referral</h1>
           <p className="text-white text-opacity-90 text-lg mb-8">
