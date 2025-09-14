@@ -1,0 +1,1037 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[dotenv@17.2.2] injecting env (8) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Database connection: ✅ Found
+[dotenv@17.2.2] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+11:31:53 AM [express] serving on port 8000
+Session middleware - ID: NxWoL4YewX7JK4L78w4mOdNznEgO2xrz
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:04.608Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 6E4NkjGpPIQf_FSTf0OQYLeDGlZRV59q
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:04.698Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: UHc48h14hulPWnvAuBYN1_NdYcNpnMx3
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.515Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: LsHvtDXAtJlSic6i4fRPZETBsXC5utUe
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.517Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 1eBSTUOQHqxyADsbGdHNgz3CSRRo6BrH
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.519Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: hR4pyveS9TrBWiv4hP7LhdAZfefQBF0-
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.520Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: f90QdcxOARbJETUwCsF1TKLHQy6wc634
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.593Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: -u55dKwF2Vhbw3sCSstie6dWPVncd-9u
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.633Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: LO-J3HpToDYNZyCJ3xCTExVJi2J4exUZ
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.636Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: d1q9K4V5duSvzex0qagxJdGGXalrhHwp
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.773Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: jaOR_ahxRf5EvFk0Pn6GljadObLjEOX2
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.774Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: JGcjvlNNsnKAbmWj4_xXX7rTUfSGoGwD
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.775Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: HRQGPIWRhsTFEJxrW94xXXHhwVJsbVO-
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.833Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: btCpcXWi9tdZ4fF0gq044SDYZtOin-jC
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:05.834Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Session middleware - ID: 1BWgRy0XlLKcqOQUNVzHT-RLsEIep_8o
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.171Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: cGM-p56L1ov-78KSgfDYtBz8AxSBRjem
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.594Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: SwwmKF9hCFBZ7cAuw18J8eYYuy5rTvMc
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.594Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: xeCWlyDmDPnu-Io3N-cKQJAZaReH-giI
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.660Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: j-1X6bBjHvDzrsMGEZTD4_UdS7UFTimq
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.663Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: rZpjy4kFkKaouSdCU1YEQB3XJLJhvBuV
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.670Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 9yazDSgfECS137glFmrWsrG5cRGOmOEW
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.704Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: d79Q_zYDhcuv0RrqE_ilOEYRaowQ2lcq
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.706Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: aKGrdVSnpqRASbHvPnWUOunQL_OUeuy5
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.718Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: w0C4UZKhJ2y5bKiBiPpmfvCL3nCPIjdK
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.718Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: ryC6w5jEXX7sS37zBdJwX0yWlFsIrSww
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.753Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 1IolBiot7GTo2Y93r1zAXCnJpAFIdpAb
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.755Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 0uGrjs5K8m5TpIYNwcJhU931O1u8AsCp
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.787Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: baxbXatP3igiBIvG_xifwt8wzoVjI4gT
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.797Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Ssu1HrCIi9-_-enD4KwRUaDTkvWkavOt
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.833Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: w_d-W23l0fIDO2KbybhKSgpRtXx5Uj1v
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.893Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Wt2srYzzQRj1j7QY_2kyVEmCsw8VWnL_
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.898Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: VIvz8rRc_3sEZ9wxUEEoygFGF_gzKdtX
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.906Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: gFKNw3OrCbHnPlVFDS6yh8utFseSBrwX
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.911Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Ozpr7uOMljKx8lTXv0wJ4KkBy9CeITq3
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.912Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: zsolgaGgnQmyAtnNX8y-TjcF4ZBu69qs
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:06.988Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: c9fapSb2i2wEvhZNbb6L7MROZ2qmRN-i
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.024Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: HQMIR5MXeGAP9ETgXFCiV8WLZHsWQyjk
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.036Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 54gW9blAPCZ8B9SnSqNtl8jJQjlgx8zc
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.039Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 4QYow31YiRlVyYn9pFtfybXz7dNi32HS
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.043Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: ARppsG--6KoRThByu6uGuQb_ZnUOToDy
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.044Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: u3qWwCyd2LRllwmkLOsU9NnBmczsNZ7b
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.047Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: -Z0MX8aHk3gjkwxHZATxS5i3LMH-WtJB
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.049Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: CtvWtGA0xf60X7DuynIT-0B8KhzC6zQk
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.051Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: NVzrCU3KVd0vQfb5K-ScINKwyj9t1omr
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.054Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: mC-SrwYl7sCXXHnLwu7m4JZu7NbMnQL6
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.069Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 3cECeO0Xhzti14h7puPp9IAGrLJrmTSx
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.072Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: ApFBbVNN0c0Ogbe7IVhdP_MDgvDyxtu1
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.074Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: JHgDW-MHMcglVmRMgA5HjeiUons93Lmj
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.077Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: jM8wa96T9hYzJNs3YCl6hlkFkb63doUE
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.079Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: KB2-o7HIUrVSBsAN9SvbARS-xXFMhGUu
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.081Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: VF7yQjHrsgHZKagcV1XEAbV9JdUAgEal
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.084Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: BQjEuW11SeLn6_OI8SMIYbf9Y3yCEBxY
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.087Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: jj0Va0kVULYgQp3joqpjZzW-AePQWAJO
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.091Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: H2NqdZOSIJwjia_Gy5QSgvD_JWtqqyks
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.092Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: m60IOt2Hq9L1fPkQAVgQI_2OQ3_Ri5Os
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.096Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: reMC2BZBtBow9WMN_46BxFpV1GmuUysG
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.098Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: sZzUIpycvQ88IrKGibjPbp38sgDoJvta
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.105Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Y6jTIqUYpQKOqpcNkRhJfuaEZcgqMmR0
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.107Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: XqRqvYqu4GlH1IZB3_Jy5Fi2-wVe1JXm
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.109Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: SvL35JPcm-7CJVzdCEt-DPEa0TbPykxG
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.112Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: dRi-XrXc7vLWbpAzE1SnklNHNQL1uqDm
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.115Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: GSUS2rQDgxC8VLpKws0jNPBlqLcnjYNh
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.116Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: uairjzR4CXEVl1qx5sGeXd-zQhyJprkw
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.117Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: 4d-SDtSz5VxzOHqHiszzzD6AAcHpcUmw
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.127Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: BhksSt5aJllRdLibxKWSjIc_LoWJ1kX3
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.128Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Qi8QEM9u5rMkf11Qp3JvNupLHpsKBwY7
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.131Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: Q1jtNg1HZuC3xlnEJuiwPDcDJbPgNJI5
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.134Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: aDQtJdfs0MKZMSmPfgdGzByiJCORzZ4N
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.136Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: -Y0MTbKbgdgLcUrMnKXgXiXIpzBmbCjQ
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.141Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: -8yqj4G5vaUPd_HURC66Rh3SHSYnB4IW
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.145Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: aDgHRvC1FqzjGTk0vWwbcRbnvd7fnl75
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.149Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: iQM1pIvZYqIeZI6_1Lsph12_2iPiA_mf
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.151Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: vnUEEuv_5_hCV5LDg28YzTCsHEOUaUqn
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.379Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+=== SESSION CHECK START ===
+Session ID: vnUEEuv_5_hCV5LDg28YzTCsHEOUaUqn
+Has session object: true
+Session keys: [ 'cookie' ]
+Full session: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.379Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Cookies: payload-theme=light; _ga=GA1.1.579585770.1750832810; _ga_M8DL874DQ2=GS2.1.s1750835583$o2$g0$t1750835583$j60$l0$h0; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19idA5eYlHGY%2Fc5BlgcwaGu2I%2BzrzKMUjm%2F1fwpqktE1cda8CcbLwx54Zx7skg%2BVYQ0sZuLTaRRNQ%3D%3D; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX1%2FN294JpNKyVGBZB3FbA%2BICmbtbXwub5ts%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2BSwEGnNbl5jDrm%2F8yT2dYY65d10wMp3aM%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX18%2Fgf1crNpqZThQr99zG5V1k3jln2k5q30xD4PJXJXvXWrbzdRlgNyadRUvuyh%2FVSXOkffzoyU6Wb%2FLoxDnIQQHwfTXvsZbAPxj7ifkGFNR%2FcpAiaXcolmc%2F4omVJP%2BLVx7E%2B9hZ7CeXQfHsdHe2ZgUC90YyPJtjxc%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2FFGguYlF19fDhQNx3YXMDthh9E9D2kEp1mVwrfFZ%2FlO7B5oEHqssSKv5sRUEicV1FrHRg1DORd4b7%2Fol4wyJ6jRg%2FB%2Bfo5FYAghagDyYbZXilpPak2Y2KvzyzYLj%2Bry4FmXGeuXWpqoA%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX1%2FJ%2BN00qRRRec9UTXCF9n8NDc04GxGnQufdTMTXC47DZWaCauNWM62XsatMLpETmdH%2FOeriibKnnRRTd03OWoqZqwtCy3Hkbao6y6pSbdChekLRf%2FDJyAQwBjebJjs8TQ68kq5YKF8hww%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%228c7395d0f4cc8aeb00ff71c836b78d7e89bd27b0255ccb268747993bb2afc99b%2385849556-ab71-446c-aadf-d5c27138b72e%22%2C%22%24sesid%22%3A%5Bnull%2Cnull%2Cnull%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A5678%2Fsetup%22%7D%7D; _ga_V1N4Y20FCR=GS2.1.s1752131278$o1$g1$t1752131287$j51$l0$h0; _ga_QFLQXMR6TN=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_2VFY2G2LVQ=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_SHLB2FDJSE=GS2.1.s1753165833$o1$g1$t1753168784$j60$l0$h0; cookieconsent_dismissed=yes; _ga_NNT8NT9WMS=GS2.1.s1754458335$o7$g1$t1754460517$j60$l0$h0; NEXT_LOCALE=zh; _ga_ESSJMCBYJ6=GS2.1.s1757052438$o1$g1$t1757053228$j60$l0$h0; _ga_R0GKEC7LW1=GS2.1.s1757053225$o24$g1$t1757057667$j60$l0$h0; _gcl_au=1.1.1733567626.1757228073; _fbp=fb.0.1757228073944.81151173963790148; _ga_7JCD30VRKL=GS2.1.s1757228073$o1$g1$t1757228517$j60$l0$h0; worldref.sid=s%3A6Uq19h_1a49wCRWZqF06CPqu7xmgRngK.F3vQZvgOE6fHXqUs37IAfncQJWtI7WssHsXI82o0nd8
+❌ No session user found
+=== SESSION CHECK END ===
+
+11:32:07 AM [express] GET /api/auth/session 200 in 11ms :: {"user":null,"expires":null}
+Session middleware - ID: v9v6jeh797TdtazLV7_SAzGIfQIpU9wp
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.419Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+=== SESSION CHECK START ===
+Session ID: v9v6jeh797TdtazLV7_SAzGIfQIpU9wp
+Has session object: true
+Session keys: [ 'cookie' ]
+Full session: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.419Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Cookies: payload-theme=light; _ga=GA1.1.579585770.1750832810; _ga_M8DL874DQ2=GS2.1.s1750835583$o2$g0$t1750835583$j60$l0$h0; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19idA5eYlHGY%2Fc5BlgcwaGu2I%2BzrzKMUjm%2F1fwpqktE1cda8CcbLwx54Zx7skg%2BVYQ0sZuLTaRRNQ%3D%3D; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX1%2FN294JpNKyVGBZB3FbA%2BICmbtbXwub5ts%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2BSwEGnNbl5jDrm%2F8yT2dYY65d10wMp3aM%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX18%2Fgf1crNpqZThQr99zG5V1k3jln2k5q30xD4PJXJXvXWrbzdRlgNyadRUvuyh%2FVSXOkffzoyU6Wb%2FLoxDnIQQHwfTXvsZbAPxj7ifkGFNR%2FcpAiaXcolmc%2F4omVJP%2BLVx7E%2B9hZ7CeXQfHsdHe2ZgUC90YyPJtjxc%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2FFGguYlF19fDhQNx3YXMDthh9E9D2kEp1mVwrfFZ%2FlO7B5oEHqssSKv5sRUEicV1FrHRg1DORd4b7%2Fol4wyJ6jRg%2FB%2Bfo5FYAghagDyYbZXilpPak2Y2KvzyzYLj%2Bry4FmXGeuXWpqoA%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX1%2FJ%2BN00qRRRec9UTXCF9n8NDc04GxGnQufdTMTXC47DZWaCauNWM62XsatMLpETmdH%2FOeriibKnnRRTd03OWoqZqwtCy3Hkbao6y6pSbdChekLRf%2FDJyAQwBjebJjs8TQ68kq5YKF8hww%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%228c7395d0f4cc8aeb00ff71c836b78d7e89bd27b0255ccb268747993bb2afc99b%2385849556-ab71-446c-aadf-d5c27138b72e%22%2C%22%24sesid%22%3A%5Bnull%2Cnull%2Cnull%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A5678%2Fsetup%22%7D%7D; _ga_V1N4Y20FCR=GS2.1.s1752131278$o1$g1$t1752131287$j51$l0$h0; _ga_QFLQXMR6TN=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_2VFY2G2LVQ=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_SHLB2FDJSE=GS2.1.s1753165833$o1$g1$t1753168784$j60$l0$h0; cookieconsent_dismissed=yes; _ga_NNT8NT9WMS=GS2.1.s1754458335$o7$g1$t1754460517$j60$l0$h0; NEXT_LOCALE=zh; _ga_ESSJMCBYJ6=GS2.1.s1757052438$o1$g1$t1757053228$j60$l0$h0; _ga_R0GKEC7LW1=GS2.1.s1757053225$o24$g1$t1757057667$j60$l0$h0; _gcl_au=1.1.1733567626.1757228073; _fbp=fb.0.1757228073944.81151173963790148; _ga_7JCD30VRKL=GS2.1.s1757228073$o1$g1$t1757228517$j60$l0$h0; worldref.sid=s%3A6Uq19h_1a49wCRWZqF06CPqu7xmgRngK.F3vQZvgOE6fHXqUs37IAfncQJWtI7WssHsXI82o0nd8
+❌ No session user found
+=== SESSION CHECK END ===
+
+11:32:07 AM [express] GET /api/auth/session 200 in 1ms :: {"user":null,"expires":null}
+Session middleware - ID: PLmDTXXL0plEDw_B79OxW4nkkD1dbFsf
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:07.799Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: cG3WzdtVGisxY7Yr0-D4iG69NYcCKHc-
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:32:08.994Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Verifying World ID proof: {
+  app_id: 'app_staging_7dd00a92b79e4165684dcf3c65d474a9',
+  action: undefined,
+  verification_level: 'device',
+  merkle_root: '0x123...',
+  nullifier_hash: 'test_db_12...'
+}
+✅ IDKit verification bypassed for development - assuming valid proof
+Database error in createOrUpdateWorldIdUser: ErrorEvent {
+  [Symbol(kTarget)]: WebSocket {
+    _events: [Object: null prototype] {
+      error: [Function],
+      message: [Function],
+      close: [Function],
+      open: [Function]
+    },
+    _eventsCount: 4,
+    _maxListeners: undefined,
+    _binaryType: 'arraybuffer',
+    _closeCode: 1006,
+    _closeFrameReceived: false,
+    _closeFrameSent: false,
+    _closeMessage: <Buffer >,
+    _closeTimer: null,
+    _errorEmitted: true,
+    _extensions: {},
+    _paused: false,
+    _protocol: '',
+    _readyState: 3,
+    _receiver: null,
+    _sender: null,
+    _socket: null,
+    _bufferedAmount: 0,
+    _isServer: false,
+    _redirects: 0,
+    _autoPong: true,
+    _url: 'wss://localhost/v2',
+    _req: null,
+    [Symbol(kCapture)]: false
+  },
+  [Symbol(kType)]: 'error',
+  [Symbol(kError)]: Error: connect ECONNREFUSED ::1:443
+      at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+      at __node_internal_exceptionWithHostPort (node:internal/errors:671:12)
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -61,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 443
+  },
+  [Symbol(kMessage)]: 'connect ECONNREFUSED ::1:443'
+}
+World ID verification error: ErrorEvent {
+  [Symbol(kTarget)]: WebSocket {
+    _events: [Object: null prototype] {
+      error: [Function],
+      message: [Function],
+      close: [Function],
+      open: [Function]
+    },
+    _eventsCount: 4,
+    _maxListeners: undefined,
+    _binaryType: 'arraybuffer',
+    _closeCode: 1006,
+    _closeFrameReceived: false,
+    _closeFrameSent: false,
+    _closeMessage: <Buffer >,
+    _closeTimer: null,
+    _errorEmitted: true,
+    _extensions: {},
+    _paused: false,
+    _protocol: '',
+    _readyState: 3,
+    _receiver: null,
+    _sender: null,
+    _socket: null,
+    _bufferedAmount: 0,
+    _isServer: false,
+    _redirects: 0,
+    _autoPong: true,
+    _url: 'wss://localhost/v2',
+    _req: null,
+    [Symbol(kCapture)]: false
+  },
+  [Symbol(kType)]: 'error',
+  [Symbol(kError)]: Error: connect ECONNREFUSED ::1:443
+      at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+      at __node_internal_exceptionWithHostPort (node:internal/errors:671:12)
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -61,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 443
+  },
+  [Symbol(kMessage)]: 'connect ECONNREFUSED ::1:443'
+}
+11:32:09 AM [express] POST /api/verify-world-id 500 in 39ms :: {"message":"เกิดข้อผิดพลาดในการยืนยัน …
+11:35:44 [vite] hmr update /src/pages/register.tsx, /src/index.css?v=Ae59s22hPWExXLffNlTQA
+Session middleware - ID: sL2ya4qPcIixgWfWGrKaPK047Wz4pGAi
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:35:45.037Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: s3-5uqkArRirG74uC5rRhLci7M0WZFLS
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:35:45.042Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Session middleware - ID: LjGrlGMnhBAVo1hF_wI7_0UU1tOuFDok
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:35:46.355Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+=== SESSION CHECK START ===
+Session ID: LjGrlGMnhBAVo1hF_wI7_0UU1tOuFDok
+Has session object: true
+Session keys: [ 'cookie' ]
+Full session: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-14T04:35:46.355Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Cookies: payload-theme=light; _ga=GA1.1.579585770.1750832810; _ga_M8DL874DQ2=GS2.1.s1750835583$o2$g0$t1750835583$j60$l0$h0; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19idA5eYlHGY%2Fc5BlgcwaGu2I%2BzrzKMUjm%2F1fwpqktE1cda8CcbLwx54Zx7skg%2BVYQ0sZuLTaRRNQ%3D%3D; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX1%2FN294JpNKyVGBZB3FbA%2BICmbtbXwub5ts%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2BSwEGnNbl5jDrm%2F8yT2dYY65d10wMp3aM%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX18%2Fgf1crNpqZThQr99zG5V1k3jln2k5q30xD4PJXJXvXWrbzdRlgNyadRUvuyh%2FVSXOkffzoyU6Wb%2FLoxDnIQQHwfTXvsZbAPxj7ifkGFNR%2FcpAiaXcolmc%2F4omVJP%2BLVx7E%2B9hZ7CeXQfHsdHe2ZgUC90YyPJtjxc%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2FFGguYlF19fDhQNx3YXMDthh9E9D2kEp1mVwrfFZ%2FlO7B5oEHqssSKv5sRUEicV1FrHRg1DORd4b7%2Fol4wyJ6jRg%2FB%2Bfo5FYAghagDyYbZXilpPak2Y2KvzyzYLj%2Bry4FmXGeuXWpqoA%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX1%2FJ%2BN00qRRRec9UTXCF9n8NDc04GxGnQufdTMTXC47DZWaCauNWM62XsatMLpETmdH%2FOeriibKnnRRTd03OWoqZqwtCy3Hkbao6y6pSbdChekLRf%2FDJyAQwBjebJjs8TQ68kq5YKF8hww%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%228c7395d0f4cc8aeb00ff71c836b78d7e89bd27b0255ccb268747993bb2afc99b%2385849556-ab71-446c-aadf-d5c27138b72e%22%2C%22%24sesid%22%3A%5Bnull%2Cnull%2Cnull%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A5678%2Fsetup%22%7D%7D; _ga_V1N4Y20FCR=GS2.1.s1752131278$o1$g1$t1752131287$j51$l0$h0; _ga_QFLQXMR6TN=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_2VFY2G2LVQ=GS2.1.s1753098385$o3$g0$t1753098385$j60$l0$h0; _ga_SHLB2FDJSE=GS2.1.s1753165833$o1$g1$t1753168784$j60$l0$h0; cookieconsent_dismissed=yes; _ga_NNT8NT9WMS=GS2.1.s1754458335$o7$g1$t1754460517$j60$l0$h0; NEXT_LOCALE=zh; _ga_ESSJMCBYJ6=GS2.1.s1757052438$o1$g1$t1757053228$j60$l0$h0; _ga_R0GKEC7LW1=GS2.1.s1757053225$o24$g1$t1757057667$j60$l0$h0; _gcl_au=1.1.1733567626.1757228073; _fbp=fb.0.1757228073944.81151173963790148; _ga_7JCD30VRKL=GS2.1.s1757228073$o1$g1$t1757228517$j60$l0$h0; worldref.sid=s%3A6Uq19h_1a49wCRWZqF06CPqu7xmgRngK.F3vQZvgOE6fHXqUs37IAfncQJWtI7WssHsXI82o0nd8
+❌ No session user found
+=== SESSION CHECK END ===
+
+11:35:46 AM [express] GET /api/auth/session 304 in 3ms :: {"user":null,"expires":null}

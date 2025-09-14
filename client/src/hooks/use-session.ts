@@ -53,7 +53,11 @@ export function useSession(): SessionData {
     }
   };
 
-  return { data: session, status };
+  const refreshSession = () => {
+    fetchSession();
+  };
+
+  return { data: session, status, refresh: refreshSession };
 }
 
 export async function signIn(providerId: string = "worldid") {

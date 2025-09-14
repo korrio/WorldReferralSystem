@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test World ID OAuth</title>
+</head>
+<body>
+    <h1>World ID OAuth Test</h1>
+    <p>Current URL: <code id="currentUrl"></code></p>
+    
+    <script>
+        document.getElementById('currentUrl').textContent = window.location.href;
+        
+        // Check if we're coming back from World ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const state = urlParams.get('state');
+        const error = urlParams.get('error');
+        
+        if (code) {
+            document.body.innerHTML += '<p style="color: green;">✅ SUCCESS: Received authorization code: ' + code.substring(0, 10) + '...</p>';
+            document.body.innerHTML += '<p>State: ' + state + '</p>';
+        } else if (error) {
+            document.body.innerHTML += '<p style="color: red;">❌ ERROR: ' + error + '</p>';
+        } else {
+            // Redirect to World ID
+            const authUrl = 'https://id.worldcoin.org/authorize?client_id=app_staging_7dd00a92b79e4165684dcf3c65d474a9&response_type=code&scope=openid&redirect_uri=' + encodeURIComponent(window.location.href) + '&state=test123';
+            document.body.innerHTML += '<p><a href="' + authUrl + '">Click here to test World ID OAuth</a></p>';
+            document.body.innerHTML += '<p>Or scan this QR code with your World app</p>';
+        }
+    </script>
+</body>
+</html>

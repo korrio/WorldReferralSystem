@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Users, DollarSign, Zap, ExternalLink } from "lucide-react";
+import { Users, DollarSign } from "lucide-react";
 import { useLocation } from "wouter";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ToastNotification } from "@/components/ui/toast-notification";
+import { WorldIdSignupButton } from "@/components/WorldIdSignupButton";
 import { referralApi } from "@/lib/api";
 
 export default function Welcome() {
@@ -23,36 +24,20 @@ export default function Welcome() {
     refetchInterval: 30000, // อัพเดททุก 30 วินาที
   });
 
-  // Mutation สำหรับขอ referral link
-  const assignReferralMutation = useMutation({
-    mutationFn: () => {
-      // ดึงข้อมูลผู้ใช้
-      const ipAddress = undefined; // จะได้จาก backend
-      const userAgent = navigator.userAgent;
-      
-      return referralApi.assignReferral(ipAddress, userAgent);
-    },
-    onSuccess: (data) => {
-      // เปิด World ID ในแท็บใหม่ด้วย referral link ที่ได้
-      window.open(data.referralLink, '_blank');
-      
-      setToast({ 
-        message: `จัดสรรเรียบร้อย! ${data.message}`, 
-        isVisible: true, 
-        type: "success" 
-      });
-    },
-    onError: (error: any) => {
-      setToast({ 
-        message: error.message || "เกิดข้อผิดพลาด กรุณาลองใหม่", 
-        isVisible: true, 
-        type: "error" 
-      });
-    },
-  });
+  const handleWorldIdSignupSuccess = (data: { referralLink: string; memberName: string; referralId: string }) => {
+    setToast({ 
+      message: `พบลิ้งค์แนะนำจาก ${data.memberName}! กำลังเปิดหน้าสมัคร...`, 
+      isVisible: true, 
+      type: "success" 
+    });
+  };
 
-  const handleJoinWorldId = () => {
-    assignReferralMutation.mutate();
+  const handleWorldIdSignupError = (error: string) => {
+    setToast({ 
+      message: error, 
+      isVisible: true, 
+      type: "error" 
+    });
   };
 
   const handleJoinMember = () => {
@@ -77,24 +62,11 @@ export default function Welcome() {
           <div className="space-y-4">
             <div className="text-center">
               <h3 className="text-white font-semibold mb-2">ยังไม่มี World ID?</h3>
-              <Button
-                onClick={handleJoinWorldId}
-                disabled={assignReferralMutation.isPending}
-                className="w-full py-4 text-lg font-semibold bg-white text-primary hover:bg-gray-100 shadow-lg"
-                data-testid="button-join-worldid"
-              >
-                {assignReferralMutation.isPending ? (
-                  <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
-                    กำลังจัดสรร...
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center">
-                    <ExternalLink className="w-5 h-5 mr-2" />
-                    สมัคร World ID ฟรี
-                  </div>
-                )}
-              </Button>
+              <WorldIdSignupButton
+                onSuccess={handleWorldIdSignupSuccess}
+                onError={handleWorldIdSignupError}
+                className="w-full py-4 text-lg font-semibold bg-black text-white hover:bg-gray-800 shadow-lg"
+              />
             </div>
 
             {/* ตัวเลือก 2: มี World ID แล้ว */}

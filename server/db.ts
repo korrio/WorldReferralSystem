@@ -4,13 +4,10 @@ import { resolve } from "path";
 // Load environment variables first
 config({ path: resolve(process.cwd(), '.env') });
 
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-serverless';
-import ws from "ws";
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from "@shared/schema";
 import * as authSchema from "@shared/auth-schema";
-
-neonConfig.webSocketConstructor = ws;
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
@@ -21,6 +18,17 @@ if (!DATABASE_URL) {
 }
 
 console.log("Database connection:", DATABASE_URL ? "✅ Found" : "❌ Missing");
+console.log("Database URL:", DATABASE_URL.replace(/:[^:@]*@/, ':***@')); // Hide password in logs
 
 export const pool = new Pool({ connectionString: DATABASE_URL });
-export const db = drizzle({ client: pool, schema: { ...schema, ...authSchema } });
+export const db = drizzle(pool, { schema: { ...schema, ...authSchema } });
+
+// Test database connection
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('❌ Database connection failed:', err.message);
+  } else {
+    console.log('✅ Database connected successfully');
+    release();
+  }
+});

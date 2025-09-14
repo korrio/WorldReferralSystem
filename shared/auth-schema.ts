@@ -11,6 +11,7 @@ export const users = pgTable("users", {
   worldIdNullifierHash: text("world_id_nullifier_hash").unique(), // World ID integration
   worldIdVerified: boolean("world_id_verified").default(false),
   verificationLevel: text("verification_level"), // orb, device
+  worldIdReferralCode: text("world_id_referral_code"), // User's World ID referral code
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
@@ -47,7 +48,20 @@ export const verificationTokens = pgTable("verificationTokens", {
   compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
 }));
 
+// Referral clicks tracking table
+export const referralClicks = pgTable("referral_clicks", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  referrerUserId: varchar("referrer_user_id").notNull().references(() => users.id, { onDelete: "cascade" }), // User whose referral code was used
+  ipAddress: text("ip_address"), // IP address of the clicker
+  userAgent: text("user_agent"), // Browser info
+  clickedAt: timestamp("clicked_at").notNull().default(sql`now()`),
+  convertedAt: timestamp("converted_at"), // When/if they signed up
+  convertedUserId: varchar("converted_user_id").references(() => users.id, { onDelete: "set null" }), // The user who signed up
+});
+
 // Types for NextAuth
 export type User = typeof users.$inferSelect;
 export type Account = typeof accounts.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
+export type ReferralClick = typeof referralClicks.$inferSelect;
+export type InsertReferralClick = typeof referralClicks.$inferInsert;

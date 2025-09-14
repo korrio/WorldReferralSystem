@@ -6,7 +6,8 @@ import type { ISuccessResult } from '@worldcoin/idkit';
 export const WORLD_ID_CONFIG = {
   app_id: import.meta.env.VITE_WORLD_ID_APP_ID || 'app_staging_7dd00a92b79e4165684dcf3c65d474a9', // Replace with your app_id
   action: 'login', // This should match your action in Developer Portal
-  verification_level: 'device' as const, // 'device' or 'orb'
+  verification_level: 'device' as const, // Use 'device' for staging compatibility
+  signal: '', // Empty signal for basic authentication
 };
 
 export interface WorldIDUser {

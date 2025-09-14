@@ -5,12 +5,40 @@ import { resolve } from "path";
 config({ path: resolve(process.cwd(), '.env') });
 
 import express, { type Request, Response, NextFunction } from "express";
+import session from "express-session";
+import MemoryStore from "memorystore";
+
+const MemoryStoreSession = MemoryStore(session);
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Session middleware with persistent store
+app.use(session({
+  store: new MemoryStoreSession({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
+  secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
+  resave: false,
+  saveUninitialized: false,
+  name: 'worldref.sid',
+  cookie: {
+    secure: false, // Set to true in production with HTTPS
+    httpOnly: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    sameSite: 'lax'
+  }
+}));
+
+// Debug session middleware
+app.use((req, res, next) => {
+  console.log('Session middleware - ID:', req.sessionID);
+  console.log('Session data:', JSON.stringify(req.session, null, 2));
+  next();
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
