@@ -22,4 +22,4 @@ databases:
   - name: world-referral-db
     databaseName: world_referral_db
     user: world_referral_user
-    plan: starter
+    plan: free
