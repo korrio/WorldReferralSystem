@@ -3,9 +3,29 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertMemberSchema, insertReferralAssignmentSchema } from "@shared/schema";
 import { z } from "zod";
+// import { authHandler } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Temporary NextAuth placeholder routes
+  app.get("/api/auth/session", (req, res) => {
+    res.json({ user: null, expires: null });
+  });
+  
+  app.get("/api/auth/signin/worldid", (req, res) => {
+    const redirectUrl = `https://id.worldcoin.org/authorize?client_id=${process.env.WORLD_ID_APP_ID}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(process.env.NEXTAUTH_URL + '/api/auth/callback/worldid')}&state=temp`;
+    res.redirect(redirectUrl);
+  });
+
+  app.get("/api/auth/callback/worldid", (req, res) => {
+    // Placeholder callback - would normally handle OAuth code exchange
+    res.redirect('/profile?auth=success');
+  });
+
+  app.post("/api/auth/signout", (req, res) => {
+    res.json({ status: "ok" });
+  });
+
   // ดึง referral link ถัดไป (หัวใจของระบบ)
   app.post("/api/assign-referral", async (req, res) => {
     try {
@@ -144,6 +164,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ totalClicks: clicks });
     } catch (error) {
       res.status(500).json({ message: "เกิดข้อผิดพลาดในระบบ" });
+    }
+  });
+
+  // World ID verification endpoint
+  app.post("/api/verify-world-id", async (req, res) => {
+    try {
+      const { proof, merkle_root, nullifier_hash, verification_level, credential_type, action, signal } = req.body;
+
+      // Verify the World ID proof
+      const verifyRes = await fetch('https://developer.worldcoin.org/api/v1/verify/' + process.env.WORLD_ID_APP_ID, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.WORLD_ID_CLIENT_SECRET}`,
+        },
+        body: JSON.stringify({
+          nullifier_hash,
+          merkle_root,
+          proof,
+          verification_level,
+          action,
+          signal: signal || "",
+        }),
+      });
+
+      if (verifyRes.status === 200) {
+        const wldResponse = await verifyRes.json();
+        
+        // Store the verified user information
+        const user = {
+          verified: true,
+          nullifier_hash,
+          verification_level,
+          merkle_root,
+          proof,
+          credential_type,
+          verified_at: new Date().toISOString(),
+        };
+
+        res.json(user);
+      } else {
+        const errorResponse = await verifyRes.json();
+        res.status(400).json({ 
+          message: "World ID verification failed", 
+          error: errorResponse 
+        });
+      }
+    } catch (error) {
+      console.error("World ID verification error:", error);
+      res.status(500).json({ 
+        message: "เกิดข้อผิดพลาดในการยืนยัน World ID" 
+      });
     }
   });
 
