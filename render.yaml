@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: world-referral-system
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: world-referral-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: VITE_WORLD_ID_APP_ID
+        sync: false
+    healthCheckPath: /api/health
+
+databases:
+  - name: world-referral-db
+    databaseName: world_referral_db
+    user: world_referral_user
+    plan: starter
