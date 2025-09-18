@@ -34,8 +34,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const usersWithReferralCodes = await storage.getAllUsersWithReferralCodes();
 
       if (usersWithReferralCodes.length === 0) {
-        return res.status(404).json({ 
-          error: "No referral codes available" 
+        // Return empty referral code instead of error
+        return res.json({ 
+          referralLink: "https://worldcoin.org/join/",
+          memberName: "World ID Community",
+          referralId: null,
+          message: "No specific referral codes available, using default signup link"
         });
       }
 
