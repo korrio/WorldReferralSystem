@@ -6,7 +6,7 @@ export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name"),
   email: text("email").unique(),
-  emailVerified: boolean("email_verified").default(false),
+  emailVerified: timestamp("emailVerified", { mode: "date" }), // Keep original NextAuth format
   image: text("image"),
   photoURL: text("photo_url"), // Firebase/Google photo URL
   

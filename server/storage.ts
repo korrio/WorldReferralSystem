@@ -526,7 +526,7 @@ class DbStorage implements IStorage {
             name: userData.name,
             email: userData.email,
             photoURL: userData.photoURL,
-            emailVerified: userData.emailVerified,
+            emailVerified: userData.emailVerified ? new Date() : null, // Convert boolean to timestamp
             updatedAt: new Date(),
           })
           .where(eq(users.googleUid, userData.googleUid))
@@ -545,7 +545,7 @@ class DbStorage implements IStorage {
             name: userData.name,
             email: userData.email,
             photoURL: userData.photoURL,
-            emailVerified: userData.emailVerified,
+            emailVerified: userData.emailVerified ? new Date() : null, // Convert boolean to timestamp
             provider: userData.provider,
             worldIdVerified: false, // Google users are not World ID verified
             worldIdReferralCode: userData.worldIdReferralCode || null,
