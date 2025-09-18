@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ToastNotification } from "@/components/ui/toast-notification";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useSession, signOut } from "@/hooks/use-session";
 
 export default function Profile() {
@@ -23,6 +24,7 @@ export default function Profile() {
   const [isEditingReferralCode, setIsEditingReferralCode] = useState(false);
   const [referralCode, setReferralCode] = useState("");
   const [isSavingReferralCode, setIsSavingReferralCode] = useState(false);
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
 
   useEffect(() => {
     // On initial mount, refresh session to get the latest data
@@ -254,6 +256,7 @@ export default function Profile() {
             </div>
             <div className="flex gap-2">
               <Button 
+                onClick={() => setIsSettingsModalOpen(true)}
                 variant="ghost" 
                 size="sm" 
                 className="text-white hover:bg-white hover:bg-opacity-20 p-2"
@@ -528,6 +531,20 @@ export default function Profile() {
 
         </div>
       </div>
+
+      {/* Settings Modal */}
+      <Dialog open={isSettingsModalOpen} onOpenChange={setIsSettingsModalOpen}>
+        <DialogContent className="max-w-md mx-auto">
+          <DialogHeader>
+            <DialogTitle className="text-center font-bold text-xl">
+              World Referral System
+            </DialogTitle>
+            <DialogDescription className="text-center mt-4 text-sm leading-relaxed">
+              เราคือระบบ middleware ช่วยคุณหา referral friend ให้คุณสร้างรายได้ได้ง่ายขึ้นผ่านการโฆษณาและกระจายลิ้งในเครือข่าย Social Network และ การยิง Ads เพื่อให้คุณได้รับ Rewards จาก World ได้รวดเร็วทันใจขึ้น
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       <ToastNotification
         message={toast.message}

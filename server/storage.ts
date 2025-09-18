@@ -527,6 +527,7 @@ class DbStorage implements IStorage {
             email: userData.email,
             photoURL: userData.photoURL,
             emailVerified: userData.emailVerified ? new Date() : null, // Convert boolean to timestamp
+            worldIdReferralCode: userData.worldIdReferralCode || null, // Include referral code update
             updatedAt: new Date(),
           })
           .where(eq(users.googleUid, userData.googleUid))
