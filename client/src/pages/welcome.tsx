@@ -50,7 +50,7 @@ export default function Welcome() {
       {/* Hero Section */}
       <div className="gradient-bg text-white px-6 pt-16 pb-12">
         <div className="max-w-md mx-auto text-center">
-          <div className="mx-auto mb-6 flex items-center justify-center">
+          <div className="mx-auto mb-6 flex items-center justify-center bg-black rounded-[20%] w-fit p-2">
             <WorldRefLogo width={80} height={80} />
           </div>
           <h1 className="text-3xl font-bold mb-4">World Referral</h1>
