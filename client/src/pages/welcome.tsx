@@ -56,7 +56,7 @@ export default function Welcome() {
           <h1 className="text-3xl font-bold mb-4">World Referral</h1>
           <p className="text-white text-opacity-90 text-lg mb-8">
             เครื่องมือช่วยหา Referral<br />
-            ไม่มีเพื่อน เราช่วยหาให้คุณ ❤️
+            ไม่มีเพื่อน เราช่วยหาให้คุณนะ ❤️
           </p>
           
           {/* ตัวเลือก 1: ยังไม่มี World ID */}
