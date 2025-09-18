@@ -13,8 +13,6 @@ export function WorldRefLogo({ className = "", width = 200, height = 200 }: Worl
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Black background circle */}
-      <circle cx="100" cy="100" r="95" fill="black"/>
       <circle cx="100" cy="100" r="30" fill="white"/>
       <circle cx="100" cy="100" r="70" fill="none" stroke="white" strokeWidth="2"/>
       <circle cx="100" cy="30" r="10" fill="white"/>
