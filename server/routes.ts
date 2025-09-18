@@ -330,6 +330,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Google Auth endpoint
+  app.post("/api/auth/google", async (req, res) => {
+    try {
+      console.log("Google auth request:", req.body);
+      
+      const { uid, email, displayName, photoURL, emailVerified } = req.body;
+      
+      if (!uid || !email) {
+        console.error("Missing required Google auth data");
+        return res.status(400).json({ error: "Missing required user data" });
+      }
+
+      // Create or update user in our database
+      const userData = await storage.createOrUpdateGoogleUser({
+        googleUid: uid,
+        email: email,
+        name: displayName || email.split('@')[0],
+        photoURL: photoURL,
+        emailVerified: emailVerified,
+        provider: 'google'
+      });
+
+      if (!req.session) {
+        console.error('No session object available for Google auth!');
+        return res.status(500).json({ error: "Session not available" });
+      }
+      
+      // Store user in session
+      req.session.user = userData;
+      
+      console.log("Google user saved to database:", userData.id);
+      console.log("Session after Google auth:", JSON.stringify(req.session, null, 2));
+      
+      // Save session
+      req.session.save((err) => {
+        if (err) {
+          console.error("Google auth session save error:", err);
+          return res.status(500).json({ error: "Session save failed" });
+        }
+        
+        console.log('Google auth session saved successfully with ID:', req.sessionID);
+        res.json({ 
+          success: true, 
+          user: userData,
+          sessionId: req.sessionID 
+        });
+      });
+
+    } catch (error) {
+      console.error("Google auth error:", error);
+      res.status(500).json({ error: "Google authentication failed" });
+    }
+  });
+
   app.post("/api/auth/signout", (req, res) => {
     req.session?.destroy((err) => {
       if (err) {

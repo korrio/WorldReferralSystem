@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToastNotification } from "@/components/ui/toast-notification";
 import { WorldIdSignupButton } from "@/components/WorldIdSignupButton";
+import { GoogleAuthButton } from "@/components/GoogleAuthButton";
 import { WORLD_ID_CONFIG, handleWorldIDSuccess, handleWorldIDError, type WorldIDUser } from "@/lib/worldid";
 import { useSession } from "@/hooks/use-session";
+import { useFirebaseSession } from "@/hooks/use-firebase-session";
+import { type FirebaseUser } from "@/lib/firebase";
 
 export default function Register() {
   const [toast, setToast] = useState({ message: "", isVisible: false, type: "success" as "success" | "error" });
@@ -15,6 +18,7 @@ export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [debugInfo, setDebugInfo] = useState<string>("");
   const { data: session, status, refresh: refreshSession } = useSession();
+  const { user: firebaseUser, isAuthenticated: isFirebaseAuthenticated } = useFirebaseSession();
 
   // Show initial configuration
   useEffect(() => {
@@ -113,6 +117,64 @@ export default function Register() {
     });
   };
 
+  // Google Auth handlers
+  const onGoogleAuthSuccess = async (user: FirebaseUser) => {
+    setIsLoading(true);
+    setToast({ 
+      message: "Google เข้าสู่ระบบสำเร็จ! กำลังสร้างบัญชี...", 
+      isVisible: true, 
+      type: "success" 
+    });
+    
+    try {
+      // Create or update user session on server
+      const response = await fetch('/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          emailVerified: user.emailVerified
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setDebugInfo(`Google Auth Success:\n${JSON.stringify(result, null, 2)}`);
+        
+        // Refresh session and navigate to profile
+        refreshSession();
+        setTimeout(() => {
+          navigate("/profile");
+        }, 500);
+      } else {
+        throw new Error('Failed to create session on server');
+      }
+    } catch (error: any) {
+      console.error('Server session creation failed:', error);
+      setToast({
+        message: "เกิดข้อผิดพลาดในการสร้างบัญชี กรุณาลองใหม่อีกครั้ง",
+        isVisible: true,
+        type: "error"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const onGoogleAuthError = (error: string) => {
+    setToast({
+      message: `เกิดข้อผิดพลาดในการเข้าสู่ระบบ: ${error}`,
+      isVisible: true,
+      type: "error"
+    });
+    setDebugInfo(`Google Auth Error: ${error}`);
+  };
+
   return (
     <div className="min-h-screen bg-background font-thai">
       {/* Header */}
@@ -161,58 +223,80 @@ export default function Register() {
             <CardHeader className="text-center pb-4">
               <CardTitle className="text-2xl text-foreground">เข้าสู่ระบบ</CardTitle>
               <p className="text-muted-foreground text-sm mt-2">
-                ใช้ World ID ของคุณในการสมัครสมาชิก
+                ใช้บัญชี Google ของคุณในการสมัครสมาชิก
               </p>
             </CardHeader>
             
             <CardContent className="space-y-4">
 
-              {/* IDKit World ID Login Button */}
-              <IDKitWidget
-                app_id={WORLD_ID_CONFIG.app_id}
-                action={WORLD_ID_CONFIG.action}
-                onSuccess={onVerifySuccess}
-                onError={onVerifyError}
-                verification_level={WORLD_ID_CONFIG.verification_level}
-                enableTelemetry
-                handleVerify={async (proof) => {
-                  console.log("World ID Proof:", proof);
-                  setDebugInfo(JSON.stringify(proof, null, 2));
-                  return Promise.resolve();
-                }}
-                onInitSuccess={() => {
-                  console.log("World ID initialized successfully");
-                  const config = {
-                    app_id: WORLD_ID_CONFIG.app_id,
-                    action: WORLD_ID_CONFIG.action,
-                    verification_level: WORLD_ID_CONFIG.verification_level
-                  };
-                  setDebugInfo(`World ID Config:\n${JSON.stringify(config, null, 2)}`);
-                }}
+              {/* Google Auth Login Button */}
+              <GoogleAuthButton
+                onSuccess={onGoogleAuthSuccess}
+                onError={onGoogleAuthError}
+                className="w-full py-4 text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg"
               >
-                {({ open }) => (
-                  <Button
-                    onClick={open}
-                    disabled={isLoading}
-                    className="w-full py-4 text-lg font-semibold bg-black text-white hover:bg-gray-800 transition-colors shadow-lg"
-                    data-testid="button-worldid-login"
-                  >
-                    <div className="flex items-center justify-center">
-                      {isLoading ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
-                          กำลังยืนยัน...
-                        </>
-                      ) : (
-                        <>
-                          <Globe className="w-6 h-6 mr-3" />
-                          <span className="font-semibold">เข้าสู่ระบบด้วย World ID</span>
-                        </>
-                      )}
-                    </div>
-                  </Button>
-                )}
-              </IDKitWidget>
+                เข้าสู่ระบบด้วย Google
+              </GoogleAuthButton>
+
+              {/* World ID Temporarily Disabled Notice */}
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                <p className="text-sm text-yellow-800">
+                  <Shield className="w-4 h-4 inline mr-1" />
+                  World ID กำลังอยู่ระหว่างการตรวจสอบ
+                </p>
+                <p className="text-xs text-yellow-600 mt-1">
+                  ขณะนี้ใช้ Google เพื่อเข้าสู่ระบบได้ชั่วคราว
+                </p>
+              </div>
+
+              {/* Hidden World ID Login Button - Keep for future use */}
+              <div style={{ display: 'none' }}>
+                <IDKitWidget
+                  app_id={WORLD_ID_CONFIG.app_id}
+                  action={WORLD_ID_CONFIG.action}
+                  onSuccess={onVerifySuccess}
+                  onError={onVerifyError}
+                  verification_level={WORLD_ID_CONFIG.verification_level}
+                  enableTelemetry
+                  handleVerify={async (proof) => {
+                    console.log("World ID Proof:", proof);
+                    setDebugInfo(JSON.stringify(proof, null, 2));
+                    return Promise.resolve();
+                  }}
+                  onInitSuccess={() => {
+                    console.log("World ID initialized successfully");
+                    const config = {
+                      app_id: WORLD_ID_CONFIG.app_id,
+                      action: WORLD_ID_CONFIG.action,
+                      verification_level: WORLD_ID_CONFIG.verification_level
+                    };
+                    setDebugInfo(`World ID Config:\n${JSON.stringify(config, null, 2)}`);
+                  }}
+                >
+                  {({ open }) => (
+                    <Button
+                      onClick={open}
+                      disabled={isLoading}
+                      className="w-full py-4 text-lg font-semibold bg-black text-white hover:bg-gray-800 transition-colors shadow-lg"
+                      data-testid="button-worldid-login"
+                    >
+                      <div className="flex items-center justify-center">
+                        {isLoading ? (
+                          <>
+                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                            กำลังยืนยัน...
+                          </>
+                        ) : (
+                          <>
+                            <Globe className="w-6 h-6 mr-3" />
+                            <span className="font-semibold">เข้าสู่ระบบด้วย World ID</span>
+                          </>
+                        )}
+                      </div>
+                    </Button>
+                  )}
+                </IDKitWidget>
+              </div>
 
               {/* Divider */}
               <div className="relative my-6">

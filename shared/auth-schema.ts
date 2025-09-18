@@ -6,12 +6,20 @@ export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name"),
   email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  emailVerified: boolean("email_verified").default(false),
   image: text("image"),
+  photoURL: text("photo_url"), // Firebase/Google photo URL
+  
+  // World ID fields
   worldIdNullifierHash: text("world_id_nullifier_hash").unique(), // World ID integration
   worldIdVerified: boolean("world_id_verified").default(false),
   verificationLevel: text("verification_level"), // orb, device
   worldIdReferralCode: text("world_id_referral_code"), // User's World ID referral code
+  
+  // Google/Firebase fields  
+  googleUid: text("google_uid").unique(), // Firebase/Google UID
+  provider: text("provider").default("worldid"), // 'worldid' or 'google'
+  
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });

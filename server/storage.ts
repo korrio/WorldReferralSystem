@@ -11,6 +11,16 @@ export interface WorldIdUserData {
   worldIdReferralCode?: string;
 }
 
+export interface GoogleUserData {
+  googleUid: string;
+  email: string;
+  name: string;
+  photoURL?: string | null;
+  emailVerified: boolean;
+  provider: 'google';
+  worldIdReferralCode?: string;
+}
+
 export interface IStorage {
   // Member operations
   getAllMembers(): Promise<Member[]>;
@@ -45,6 +55,10 @@ export interface IStorage {
   getWorldIdUser(nullifierHash: string): Promise<User | undefined>;
   getUserById(id: string): Promise<User | undefined>;
   getAllUsersWithReferralCodes(): Promise<User[]>;
+
+  // Google user operations
+  createOrUpdateGoogleUser(userData: GoogleUserData): Promise<User>;
+  getGoogleUser(googleUid: string): Promise<User | undefined>;
 
   // Referral click tracking operations
   trackReferralClickForUser(referrerUserId: string, ipAddress?: string, userAgent?: string): Promise<ReferralClick>;
@@ -301,6 +315,47 @@ export class MemStorage implements IStorage {
     );
   }
 
+  async createOrUpdateGoogleUser(userData: GoogleUserData): Promise<User> {
+    console.log('Creating/updating Google user (MemStorage):', userData);
+    
+    // Check if user already exists by Google UID
+    const existingUser = await this.getGoogleUser(userData.googleUid);
+    
+    if (existingUser) {
+      // Update existing user
+      existingUser.name = userData.name;
+      existingUser.email = userData.email;
+      existingUser.photoURL = userData.photoURL;
+      existingUser.emailVerified = userData.emailVerified;
+      existingUser.updatedAt = new Date();
+      return existingUser;
+    } else {
+      // Create new user
+      const newUser: User = {
+        id: randomUUID(),
+        googleUid: userData.googleUid,
+        name: userData.name,
+        email: userData.email,
+        photoURL: userData.photoURL,
+        emailVerified: userData.emailVerified,
+        provider: userData.provider,
+        worldIdVerified: false,
+        worldIdReferralCode: userData.worldIdReferralCode || null,
+        worldIdNullifierHash: null,
+        verificationLevel: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      
+      this.worldIdUsers.set(userData.googleUid, newUser);
+      return newUser;
+    }
+  }
+
+  async getGoogleUser(googleUid: string): Promise<User | undefined> {
+    return this.worldIdUsers.get(googleUid);
+  }
+
   async trackReferralClickForUser(referrerUserId: string, ipAddress?: string, userAgent?: string): Promise<ReferralClick> {
     const clickId = randomUUID();
     const click: ReferralClick = {
@@ -451,6 +506,75 @@ class DbStorage implements IStorage {
     } catch (error) {
       console.error('Database error in getAllUsersWithReferralCodes:', error);
       return [];
+    }
+  }
+
+  async createOrUpdateGoogleUser(userData: GoogleUserData): Promise<User> {
+    try {
+      console.log('Creating/updating Google user:', userData);
+      
+      // Check if user already exists by Google UID
+      const existingUser = await this.getGoogleUser(userData.googleUid);
+      
+      if (existingUser) {
+        console.log('Google user exists, updating:', existingUser.id);
+        
+        // Update existing user
+        const updatedUsers = await db
+          .update(users)
+          .set({
+            name: userData.name,
+            email: userData.email,
+            photoURL: userData.photoURL,
+            emailVerified: userData.emailVerified,
+            updatedAt: new Date(),
+          })
+          .where(eq(users.googleUid, userData.googleUid))
+          .returning();
+        
+        return updatedUsers[0];
+      } else {
+        console.log('Creating new Google user');
+        
+        // Create new user
+        const newUsers = await db
+          .insert(users)
+          .values({
+            id: randomUUID(),
+            googleUid: userData.googleUid,
+            name: userData.name,
+            email: userData.email,
+            photoURL: userData.photoURL,
+            emailVerified: userData.emailVerified,
+            provider: userData.provider,
+            worldIdVerified: false, // Google users are not World ID verified
+            worldIdReferralCode: userData.worldIdReferralCode || null,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .returning();
+        
+        console.log('Google user created successfully:', newUsers[0].id);
+        return newUsers[0];
+      }
+    } catch (error) {
+      console.error('Database error in createOrUpdateGoogleUser:', error);
+      throw error;
+    }
+  }
+
+  async getGoogleUser(googleUid: string): Promise<User | undefined> {
+    try {
+      const userResults = await db
+        .select()
+        .from(users)
+        .where(eq(users.googleUid, googleUid))
+        .limit(1);
+      
+      return userResults[0];
+    } catch (error) {
+      console.error('Database error in getGoogleUser:', error);
+      return undefined;
     }
   }
 
