@@ -213,7 +213,7 @@ export default function Register() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
             </Link>
-            <h1 className="text-xl font-bold ml-3">สมัครสมาชิก WordReff</h1>
+            <h1 className="text-xl font-bold ml-3">สมัครสมาชิก World Referralf</h1>
           </div>
           <p className="text-white text-opacity-90 text-sm">
             เข้าร่วมระบบเพื่อให้เราช่วยหาผู้สมัคร World ID ให้คุณ
@@ -415,7 +415,7 @@ export default function Register() {
           {/* Info Section */}
           <div className="mt-6 text-center">
             <p className="text-muted-foreground text-xs">
-              การสมัครสมาชิก WordReff หมายความว่าคุณยอมรับ<br />
+              การสมัครสมาชิก World Referralf หมายความว่าคุณยอมรับ<br />
               <span className="text-primary underline">เงื่อนไขการใช้งาน</span> และ 
               <span className="text-primary underline"> นโยบายความเป็นส่วนตัว</span>
             </p>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Large Featured Image (1200x600)</title>
+</head>
+<body>
+    <canvas id="canvas" width="1200" height="600" style="border: 1px solid #ccc; max-width: 100%; height: auto;"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Fill black background
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, 1200, 600);
+        
+        // Add background pattern
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        const dots = [
+            {x: 150, y: 120, r: 3}, {x: 300, y: 80, r: 2}, {x: 450, y: 140, r: 4},
+            {x: 600, y: 100, r: 2.5}, {x: 750, y: 160, r: 3.5}, {x: 900, y: 90, r: 2},
+            {x: 1050, y: 130, r: 3}, {x: 200, y: 400, r: 2.5}, {x: 350, y: 450, r: 3},
+            {x: 500, y: 420, r: 2}, {x: 650, y: 480, r: 4}, {x: 800, y: 440, r: 2.5},
+            {x: 950, y: 470, r: 3.5}, {x: 1100, y: 410, r: 2}
+        ];
+        
+        dots.forEach(dot => {
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // Logo background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.roundRect(100, 200, 200, 200, 40);
+        ctx.fill();
+        
+        // Draw logo (exact structure from SVG, larger scale)
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 1.6; // Scaled up from 2 * 0.8
+        
+        const centerX = 200;
+        const centerY = 300;
+        const scale = 0.8;
+        
+        // Center circle (r=30 scaled)
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 30 * scale, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Outer circle (r=70 scaled, stroke only)
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 70 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        
+        // Outer circles (r=10 scaled) - exact positions from SVG
+        const outerCircles = [
+            {x: 0, y: -70}, {x: 0, y: 70},     // top, bottom
+            {x: -70, y: 0}, {x: 70, y: 0},     // left, right
+            {x: -50, y: -50}, {x: 50, y: -50}, // top-left, top-right
+            {x: -50, y: 50}, {x: 50, y: 50}    // bottom-left, bottom-right
+        ];
+        
+        outerCircles.forEach(pos => {
+            ctx.beginPath();
+            ctx.arc(
+                centerX + pos.x * scale, 
+                centerY + pos.y * scale, 
+                10 * scale, 
+                0, Math.PI * 2
+            );
+            ctx.fill();
+        });
+        
+        // Main text content
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 48px Arial, sans-serif';
+        ctx.fillText('World Referral', 400, 250);
+        
+        ctx.font = '24px Arial, sans-serif';
+        ctx.fillText('Referral System for World ID', 400, 290);
+        
+        ctx.font = '18px Arial, sans-serif';
+        ctx.fillText('No friends? We\'ll find them for you ❤️', 400, 330);
+        
+        // Features background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+        ctx.roundRect(400, 380, 700, 120, 16);
+        ctx.fill();
+        
+        // Feature 1 - Dollar
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(450, 440, 25, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 24px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('$', 450, 448);
+        
+        ctx.textAlign = 'left';
+        ctx.font = '16px Arial, sans-serif';
+        ctx.fillText('Earn up to', 500, 425);
+        ctx.font = 'bold 20px Arial, sans-serif';
+        ctx.fillText('$250 USD', 500, 450);
+        ctx.font = '12px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillText('Automatically distributed referrals', 500, 470);
+        
+        // Feature 2 - Users
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(700, 440, 25, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Simple users icon
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(692, 435, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(708, 435, 6, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Simple body representation
+        ctx.beginPath();
+        ctx.arc(700, 450, 12, 0, Math.PI, false);
+        ctx.fill();
+        
+        ctx.font = '16px Arial, sans-serif';
+        ctx.fillText('Smart', 750, 425);
+        ctx.font = 'bold 20px Arial, sans-serif';
+        ctx.fillText('Distribution', 750, 450);
+        ctx.font = '12px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillText('Find referrals automatically', 750, 470);
+        
+        // Feature 3 - Network
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(950, 440, 25, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Network icon - center node
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(950, 440, 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Network icon - outer nodes
+        const networkNodes = [
+            {x: 938, y: 432}, {x: 962, y: 432},
+            {x: 938, y: 448}, {x: 962, y: 448}
+        ];
+        
+        networkNodes.forEach(node => {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw line to center
+            ctx.beginPath();
+            ctx.moveTo(950, 440);
+            ctx.lineTo(node.x, node.y);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        });
+        
+        ctx.font = '16px Arial, sans-serif';
+        ctx.fillText('Global', 1000, 425);
+        ctx.font = 'bold 20px Arial, sans-serif';
+        ctx.fillText('Network', 1000, 450);
+        ctx.font = '12px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillText('Connect with World ID users', 1000, 470);
+        
+        // Add roundRect polyfill for older browsers
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+        
+        // Download function
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'world-referral-featured-image-1200x600.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Auto download after a delay
+        setTimeout(downloadImage, 1000);
+    </script>
+    
+    <br><br>
+    <button onclick="downloadImage()">Download Large PNG Image (1200x600)</button>
+    <p>Large featured image for World Referral System (1200px × 600px)</p>
+    <p>Perfect for website headers, social media banners, and larger promotional use.</p>
+</body>
+</html>

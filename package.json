@@ -101,6 +101,7 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "@replit/vite-plugin-cartographer": "^0.3.0",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
     "@types/connect-pg-simple": "^7.0.3",
@@ -114,6 +115,7 @@
     "@types/react-dom": "^18.3.1",
     "@types/ws": "^8.5.13",
     "drizzle-kit": "^0.30.4",
+    "playwright": "^1.55.0",
     "tsx": "^4.19.2"
   },
   "optionalDependencies": {

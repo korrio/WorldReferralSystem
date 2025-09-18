@@ -1,0 +1,99 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black Background -->
+  <rect width="1200" height="600" fill="black"/>
+  
+  <!-- Background pattern -->
+  <circle cx="150" cy="120" r="3" fill="white" opacity="0.08"/>
+  <circle cx="300" cy="80" r="2" fill="white" opacity="0.12"/>
+  <circle cx="450" cy="140" r="4" fill="white" opacity="0.06"/>
+  <circle cx="600" cy="100" r="2.5" fill="white" opacity="0.1"/>
+  <circle cx="750" cy="160" r="3.5" fill="white" opacity="0.08"/>
+  <circle cx="900" cy="90" r="2" fill="white" opacity="0.15"/>
+  <circle cx="1050" cy="130" r="3" fill="white" opacity="0.1"/>
+  
+  <circle cx="200" cy="400" r="2.5" fill="white" opacity="0.1"/>
+  <circle cx="350" cy="450" r="3" fill="white" opacity="0.08"/>
+  <circle cx="500" cy="420" r="2" fill="white" opacity="0.12"/>
+  <circle cx="650" cy="480" r="4" fill="white" opacity="0.06"/>
+  <circle cx="800" cy="440" r="2.5" fill="white" opacity="0.1"/>
+  <circle cx="950" cy="470" r="3.5" fill="white" opacity="0.08"/>
+  <circle cx="1100" cy="410" r="2" fill="white" opacity="0.15"/>
+  
+  <!-- Logo container background -->
+  <rect x="100" y="200" width="200" height="200" rx="40" fill="white" opacity="0.1"/>
+  
+  <!-- World Referral Logo (larger version) -->
+  <g transform="translate(200, 300) scale(0.8)">
+    <circle cx="0" cy="0" r="30" fill="white"/>
+    <circle cx="0" cy="0" r="70" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="0" cy="-70" r="10" fill="white"/>
+    <circle cx="0" cy="70" r="10" fill="white"/>
+    <circle cx="-70" cy="0" r="10" fill="white"/>
+    <circle cx="70" cy="0" r="10" fill="white"/>
+    <circle cx="-50" cy="-50" r="10" fill="white"/>
+    <circle cx="50" cy="-50" r="10" fill="white"/>
+    <circle cx="-50" cy="50" r="10" fill="white"/>
+    <circle cx="50" cy="50" r="10" fill="white"/>
+  </g>
+  
+  <!-- Main content area -->
+  <g transform="translate(400, 200)">
+    <!-- Main heading -->
+    <text x="0" y="50" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white">
+      World Referral
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="90" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.9">
+      Referral System for World ID
+    </text>
+    
+    <!-- Key benefit -->
+    <text x="0" y="130" font-family="Arial, sans-serif" font-size="18" fill="white" opacity="0.8">
+      No friends? We'll find them for you ❤️
+    </text>
+  </g>
+  
+  <!-- Features section -->
+  <rect x="400" y="380" width="700" height="120" rx="16" fill="white" opacity="0.05"/>
+  
+  <!-- Feature 1 -->
+  <g transform="translate(450, 440)">
+    <!-- Dollar icon -->
+    <circle cx="0" cy="0" r="25" fill="white" opacity="0.2"/>
+    <text x="0" y="8" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">$</text>
+    <text x="50" y="-15" font-family="Arial, sans-serif" font-size="16" fill="white">Earn up to</text>
+    <text x="50" y="10" font-family="Arial, sans-serif" font-size="20" fill="white" font-weight="bold">$250 USD</text>
+    <text x="50" y="30" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.8">Automatically distributed referrals</text>
+  </g>
+  
+  <!-- Feature 2 -->
+  <g transform="translate(700, 440)">
+    <!-- Users icon -->
+    <circle cx="0" cy="0" r="25" fill="white" opacity="0.2"/>
+    <circle cx="-8" cy="-5" r="6" fill="white"/>
+    <circle cx="8" cy="-5" r="6" fill="white"/>
+    <path d="M -16 16 Q -8 8 0 16 Q 8 8 16 16" fill="white"/>
+    <text x="50" y="-15" font-family="Arial, sans-serif" font-size="16" fill="white">Smart</text>
+    <text x="50" y="10" font-family="Arial, sans-serif" font-size="20" fill="white" font-weight="bold">Distribution</text>
+    <text x="50" y="30" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.8">Find referrals automatically</text>
+  </g>
+  
+  <!-- Feature 3 -->
+  <g transform="translate(950, 440)">
+    <!-- Network icon -->
+    <circle cx="0" cy="0" r="25" fill="white" opacity="0.2"/>
+    <circle cx="0" cy="0" r="4" fill="white"/>
+    <circle cx="-12" cy="-8" r="3" fill="white"/>
+    <circle cx="12" cy="-8" r="3" fill="white"/>
+    <circle cx="-12" cy="8" r="3" fill="white"/>
+    <circle cx="12" cy="8" r="3" fill="white"/>
+    <line x1="0" y1="0" x2="-12" y2="-8" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="0" x2="12" y2="-8" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="0" x2="-12" y2="8" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="0" x2="12" y2="8" stroke="white" stroke-width="1"/>
+    <text x="50" y="-15" font-family="Arial, sans-serif" font-size="16" fill="white">Global</text>
+    <text x="50" y="10" font-family="Arial, sans-serif" font-size="20" fill="white" font-weight="bold">Network</text>
+    <text x="50" y="30" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.8">Connect with World ID users</text>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+<svg width="345" height="240" viewBox="0 0 345 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="345" height="240" fill="black"/>
+  
+  <!-- Background pattern -->
+  <circle cx="60" cy="60" r="2" fill="white" opacity="0.1"/>
+  <circle cx="120" cy="40" r="1.5" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="80" r="2.5" fill="white" opacity="0.08"/>
+  <circle cx="240" cy="50" r="1" fill="white" opacity="0.2"/>
+  <circle cx="300" cy="70" r="2" fill="white" opacity="0.12"/>
+  <circle cx="80" cy="160" r="1.5" fill="white" opacity="0.1"/>
+  <circle cx="150" cy="180" r="2" fill="white" opacity="0.15"/>
+  <circle cx="220" cy="170" r="1" fill="white" opacity="0.08"/>
+  <circle cx="290" cy="190" r="2.5" fill="white" opacity="0.12"/>
+  
+  <!-- Logo container background -->
+  <rect x="30" y="70" width="80" height="80" rx="16" fill="white" opacity="0.1"/>
+  
+  <!-- World Referral Logo (exact structure scaled down) -->
+  <g transform="translate(70, 110) scale(0.35)">
+    <circle cx="0" cy="0" r="30" fill="white"/>
+    <circle cx="0" cy="0" r="70" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="0" cy="-70" r="10" fill="white"/>
+    <circle cx="0" cy="70" r="10" fill="white"/>
+    <circle cx="-70" cy="0" r="10" fill="white"/>
+    <circle cx="70" cy="0" r="10" fill="white"/>
+    <circle cx="-50" cy="-50" r="10" fill="white"/>
+    <circle cx="50" cy="-50" r="10" fill="white"/>
+    <circle cx="-50" cy="50" r="10" fill="white"/>
+    <circle cx="50" cy="50" r="10" fill="white"/>
+  </g>
+  
+  <!-- Main heading -->
+  <text x="140" y="85" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+    World Referral
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="140" y="105" font-family="Arial, sans-serif" font-size="14" fill="white" opacity="0.9">
+    Referral System for World ID
+  </text>
+  
+  <!-- Key benefit -->
+  <text x="140" y="125" font-family="Arial, sans-serif" font-size="12" fill="white" opacity="0.8">
+    No friends? We'll find them for you ❤️
+  </text>
+  
+  <!-- Features section -->
+  <rect x="30" y="165" width="285" height="50" rx="8" fill="white" opacity="0.05"/>
+  
+  <!-- Feature icons and text -->
+  <g transform="translate(50, 185)">
+    <!-- Dollar icon -->
+    <circle cx="0" cy="0" r="12" fill="white" opacity="0.2"/>
+    <text x="0" y="4" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">$</text>
+    <text x="25" y="-8" font-family="Arial, sans-serif" font-size="10" fill="white">Earn up to</text>
+    <text x="25" y="4" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">$250 USD</text>
+  </g>
+  
+  <g transform="translate(180, 185)">
+    <!-- Users icon -->
+    <circle cx="0" cy="0" r="12" fill="white" opacity="0.2"/>
+    <circle cx="-4" cy="-2" r="3" fill="white"/>
+    <circle cx="4" cy="-2" r="3" fill="white"/>
+    <path d="M -8 8 Q -4 4 0 8 Q 4 4 8 8" fill="white"/>
+    <text x="25" y="-8" font-family="Arial, sans-serif" font-size="10" fill="white">Auto</text>
+    <text x="25" y="4" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Distribution</text>
+  </g>
+  
+  <!-- Call to action button removed as requested -->
+</svg>
