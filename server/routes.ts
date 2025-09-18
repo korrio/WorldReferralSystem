@@ -375,15 +375,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Google Auth endpoint
   app.post("/api/auth/google", async (req, res) => {
     try {
-      console.log("Google auth request:", req.body);
+      console.log("=== GOOGLE AUTH REQUEST ===");
+      console.log("Request body:", req.body);
+      console.log("Session ID:", req.sessionID);
+      console.log("Session exists:", !!req.session);
       
       const { uid, email, displayName, photoURL, emailVerified } = req.body;
       
       if (!uid || !email) {
-        console.error("Missing required Google auth data");
-        return res.status(400).json({ error: "Missing required user data" });
+        console.error("❌ Missing required Google auth data:", { uid: !!uid, email: !!email });
+        return res.status(400).json({ 
+          error: "Missing required user data",
+          details: "uid and email are required"
+        });
       }
 
+      console.log("🔍 Creating/updating Google user...");
+      
       // Create or update user in our database
       const userData = await storage.createOrUpdateGoogleUser({
         googleUid: uid,
@@ -394,25 +402,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
         provider: 'google'
       });
 
+      console.log("✅ User data from storage:", userData.id);
+
       if (!req.session) {
-        console.error('No session object available for Google auth!');
-        return res.status(500).json({ error: "Session not available" });
+        console.error('❌ No session object available for Google auth!');
+        return res.status(500).json({ 
+          error: "Session not available",
+          details: "Session middleware may not be properly configured"
+        });
       }
       
       // Store user in session
       req.session.user = userData;
       
-      console.log("Google user saved to database:", userData.id);
-      console.log("Session after Google auth:", JSON.stringify(req.session, null, 2));
+      console.log("💾 Storing user in session...");
+      console.log("Session before save:", JSON.stringify({
+        sessionID: req.sessionID,
+        userId: userData.id,
+        userEmail: userData.email
+      }, null, 2));
       
-      // Save session
+      // Save session with proper error handling
       req.session.save((err) => {
         if (err) {
-          console.error("Google auth session save error:", err);
-          return res.status(500).json({ error: "Session save failed" });
+          console.error("❌ Google auth session save error:", err);
+          return res.status(500).json({ 
+            error: "Session save failed",
+            details: err.message
+          });
         }
         
-        console.log('Google auth session saved successfully with ID:', req.sessionID);
+        console.log('✅ Google auth session saved successfully');
+        console.log('Session ID:', req.sessionID);
+        console.log("=== GOOGLE AUTH SUCCESS ===");
+        
         res.json({ 
           success: true, 
           user: userData,
@@ -421,8 +444,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
     } catch (error) {
-      console.error("Google auth error:", error);
-      res.status(500).json({ error: "Google authentication failed" });
+      console.error("❌ Google auth error:", error);
+      console.error("Error stack:", error.stack);
+      res.status(500).json({ 
+        error: "Google authentication failed",
+        details: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
+      });
     }
   });
 

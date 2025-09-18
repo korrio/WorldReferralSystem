@@ -18,6 +18,27 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// Security headers for Firebase authentication
+app.use((req, res, next) => {
+  // Fix COOP (Cross-Origin-Opener-Policy) issue for Firebase popup auth
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+  
+  // CORS headers for Firebase
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -28,13 +49,13 @@ app.use(session({
   }),
   secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true, // Changed to true for production compatibility
   name: 'worldref.sid',
   cookie: {
-    secure: false, // Set to true in production with HTTPS
+    secure: process.env.NODE_ENV === 'production', // Auto-detect based on environment
     httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-    sameSite: 'lax'
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' // Allow cross-origin in production
   }
 }));
 

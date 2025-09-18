@@ -1,0 +1,10 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[dotenv@17.2.2] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Database connection: ✅ Found
+Database URL: postgresql://postgres:***@localhost:5432/worldref
+[dotenv@17.2.2] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+11:14:52 AM [express] serving on port 8000
+✅ Database connected successfully

@@ -1,15 +1,15 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC2vQaydmLgzP84xkwuvxiYrPEoS5y6esg",
-  authDomain: "world-referral.firebaseapp.com",
-  projectId: "world-referral",
-  storageBucket: "world-referral.firebasestorage.app",
-  messagingSenderId: "952858120764",
-  appId: "1:952858120764:web:debb95eb046ea939616939",
-  measurementId: "G-4M6QPNVRM9"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -34,9 +34,10 @@ export interface FirebaseUser {
   emailVerified: boolean;
 }
 
-// Sign in with Google
+// Sign in with Google - with fallback to redirect
 export const signInWithGoogle = async (): Promise<FirebaseUser> => {
   try {
+    // First try popup method
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
     
@@ -48,8 +49,40 @@ export const signInWithGoogle = async (): Promise<FirebaseUser> => {
       emailVerified: user.emailVerified
     };
   } catch (error: any) {
-    console.error('Google sign-in error:', error);
+    console.error('Google popup sign-in failed:', error);
+    
+    // If popup fails due to COOP or popup blocking, try redirect
+    if (error.code === 'auth/popup-blocked' || 
+        error.code === 'auth/popup-closed-by-user' ||
+        error.message.includes('Cross-Origin-Opener-Policy')) {
+      
+      console.log('Falling back to redirect authentication...');
+      await signInWithRedirect(auth, googleProvider);
+      // Note: redirect will reload the page, so this function won't return
+      throw new Error('Redirecting for authentication...');
+    }
+    
     throw new Error(error.message || 'Failed to sign in with Google');
+  }
+};
+
+// Handle redirect result on page load
+export const handleRedirectResult = async (): Promise<FirebaseUser | null> => {
+  try {
+    const result = await getRedirectResult(auth);
+    if (result?.user) {
+      return {
+        uid: result.user.uid,
+        email: result.user.email,
+        displayName: result.user.displayName,
+        photoURL: result.user.photoURL,
+        emailVerified: result.user.emailVerified
+      };
+    }
+    return null;
+  } catch (error: any) {
+    console.error('Redirect result error:', error);
+    throw new Error(error.message || 'Failed to handle redirect result');
   }
 };
 
