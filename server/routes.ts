@@ -87,6 +87,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     console.log("URL:", req.url);
     console.log("Content-Type:", req.headers['content-type']);
     console.log("Body:", JSON.stringify(req.body, null, 2));
+    console.log("Session user:", req.session?.user?.id);
     
     try {
       // Set JSON response headers explicitly
@@ -94,10 +95,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const { nullifierHash, referralCode } = req.body;
 
-      if (!nullifierHash || !referralCode) {
-        console.log("❌ Missing required fields");
+      if (!referralCode) {
+        console.log("❌ Missing referral code");
         return res.status(400).json({ 
-          error: "nullifierHash and referralCode are required" 
+          error: "referralCode is required" 
         });
       }
 
@@ -109,30 +110,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      console.log("🔍 Looking for user with nullifierHash:", nullifierHash);
-      const existingUser = await storage.getWorldIdUser(nullifierHash);
+      let existingUser = null;
+
+      // Try to find user by nullifierHash (World ID users) or session (Google users)
+      if (nullifierHash) {
+        console.log("🔍 Looking for World ID user with nullifierHash:", nullifierHash);
+        existingUser = await storage.getWorldIdUser(nullifierHash);
+      } else if (req.session?.user) {
+        console.log("🔍 Using Google user from session:", req.session.user.id);
+        existingUser = req.session.user;
+      }
       
       if (!existingUser) {
         console.log("❌ User not found");
         return res.status(404).json({ 
-          error: "User not found" 
+          error: "User not found. Please login first." 
         });
       }
 
       console.log("✅ Found user:", existingUser.id, existingUser.name);
 
-      // Update user with referral code
-      const updatedUserData = {
-        worldIdNullifierHash: existingUser.worldIdNullifierHash,
-        name: existingUser.name,
-        email: existingUser.email,
-        verificationLevel: existingUser.verificationLevel,
-        worldIdVerified: existingUser.worldIdVerified,
-        worldIdReferralCode: referralCode.trim()
-      };
+      // Update user with referral code - handle both World ID and Google users
+      let updatedUser;
+      
+      if (existingUser.worldIdNullifierHash) {
+        // World ID user - use existing method
+        const updatedUserData = {
+          worldIdNullifierHash: existingUser.worldIdNullifierHash,
+          name: existingUser.name,
+          email: existingUser.email,
+          verificationLevel: existingUser.verificationLevel,
+          worldIdVerified: existingUser.worldIdVerified,
+          worldIdReferralCode: referralCode.trim()
+        };
+        
+        console.log("💾 Updating World ID user with referral code:", referralCode.trim());
+        updatedUser = await storage.createOrUpdateWorldIdUser(updatedUserData);
+      } else if (existingUser.googleUid) {
+        // Google user - use Google method
+        const updatedUserData = {
+          googleUid: existingUser.googleUid,
+          email: existingUser.email,
+          name: existingUser.name,
+          photoURL: existingUser.photoURL,
+          emailVerified: !!existingUser.emailVerified,
+          provider: 'google',
+          worldIdReferralCode: referralCode.trim()
+        };
+        
+        console.log("💾 Updating Google user with referral code:", referralCode.trim());
+        updatedUser = await storage.createOrUpdateGoogleUser(updatedUserData);
+      } else {
+        console.log("❌ User type not supported");
+        return res.status(400).json({ 
+          error: "User type not supported" 
+        });
+      }
 
-      console.log("💾 Updating user with referral code:", referralCode.trim());
-      const updatedUser = await storage.createOrUpdateWorldIdUser(updatedUserData);
+      // Update session with new user data
+      if (req.session) {
+        req.session.user = updatedUser;
+      }
 
       const response = {
         success: true,
