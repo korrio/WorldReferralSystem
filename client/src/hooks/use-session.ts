@@ -8,6 +8,7 @@ export interface User {
   worldIdNullifierHash?: string;
   worldIdVerified?: boolean;
   verificationLevel?: string;
+  worldIdReferralCode?: string;
 }
 
 export interface Session {
@@ -18,6 +19,7 @@ export interface Session {
 interface SessionData {
   data: Session | null;
   status: "loading" | "authenticated" | "unauthenticated";
+  refresh: () => void;
 }
 
 export function useSession(): SessionData {

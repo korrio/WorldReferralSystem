@@ -1,0 +1,377 @@
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+[dotenv@17.2.2] injecting env (8) from .env -- tip: 📡 version env with Radar: https://dotenvx.com/radar
+Database connection: ✅ Found
+Database URL: postgresql://postgres:***@localhost:5432/worldref
+[dotenv@17.2.2] injecting env (0) from .env -- tip: 📡 version env with Radar: https://dotenvx.com/radar
+9:01:41 AM [express] serving on port 8000
+✅ Database connected successfully
+Session middleware - ID: 7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:01:54.702Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Google auth request: {
+  uid: 'yzQ3KSK0itQW9FwKjOD6CMf9vpA3',
+  email: 'korr@aq1.co',
+  displayName: 'Thananon N.',
+  photoURL: null,
+  emailVerified: true
+}
+Creating/updating Google user: {
+  googleUid: 'yzQ3KSK0itQW9FwKjOD6CMf9vpA3',
+  email: 'korr@aq1.co',
+  name: 'Thananon N.',
+  photoURL: null,
+  emailVerified: true,
+  provider: 'google'
+}
+Google user exists, updating: 64bf95bf-ac87-4a60-916f-c8145808ca96
+Google user saved to database: 64bf95bf-ac87-4a60-916f-c8145808ca96
+Session after Google auth: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:01:54.702Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:01:54.745Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": null,
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:01:54.745Z"
+  }
+}
+Google auth session saved successfully with ID: 7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW
+9:01:54 AM [express] POST /api/auth/google 200 in 50ms :: {"success":true,"user":{"id":"64bf95bf-ac8…
+Session middleware - ID: 7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:01:54.702Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:01:54.745Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": null,
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:01:54.745Z"
+  }
+}
+=== SESSION CHECK START ===
+Session ID: 7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW
+Has session object: true
+Session keys: [ 'cookie', 'user' ]
+Full session: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:01:54.702Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:01:54.745Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": null,
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:01:54.745Z"
+  }
+}
+Cookies: worldref.sid=s%3A7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW.Jl23bwXGzgyqfhlerqR0jVsR%2BeIsiWYFAujdnFCuFuw
+✅ Session user found: {
+  id: '64bf95bf-ac87-4a60-916f-c8145808ca96',
+  name: 'Thananon N.',
+  worldIdVerified: false
+}
+Sending session data: {
+  user: {
+    id: '64bf95bf-ac87-4a60-916f-c8145808ca96',
+    name: 'Thananon N.',
+    email: 'korr@aq1.co',
+    worldIdVerified: false,
+    verificationLevel: null,
+    worldIdNullifierHash: null,
+    worldIdReferralCode: null
+  },
+  expires: '2025-10-18T02:02:01.184Z'
+}
+=== SESSION CHECK END ===
+
+9:02:01 AM [express] GET /api/auth/session 200 in 2ms :: {"user":{"id":"64bf95bf-ac87-4a60-916f-c814…
+Session middleware - ID: pI1ZxIlQqsvN0k50wFVrSJi-ZVRSJbx2
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:08.661Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Looking for user with email: korr@aq1.co
+Found user: 64bf95bf-ac87-4a60-916f-c8145808ca96 Thananon N. null
+9:02:08 AM [express] GET /api/debug/user/korr@aq1.co 200 in 40ms :: {"found":true,"user":{"id":"64bf…
+Session middleware - ID: 7e-g3GhqLYGMAaWs2JGcmqK9VlA7RRrW
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:01.184Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:01:54.745Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": null,
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:01:54.745Z"
+  }
+}
+=== REFERRAL CODE UPDATE REQUEST ===
+Method: POST
+URL: /api/user/referral-code
+Content-Type: application/json
+Body: {
+  "referralCode": "AAA99BB"
+}
+Session user: 64bf95bf-ac87-4a60-916f-c8145808ca96
+🔍 Using Google user from session: 64bf95bf-ac87-4a60-916f-c8145808ca96
+✅ Found user: 64bf95bf-ac87-4a60-916f-c8145808ca96 Thananon N.
+💾 Updating Google user with referral code: AAA99BB
+Creating/updating Google user: {
+  googleUid: 'yzQ3KSK0itQW9FwKjOD6CMf9vpA3',
+  email: 'korr@aq1.co',
+  name: 'Thananon N.',
+  photoURL: null,
+  emailVerified: true,
+  provider: 'google',
+  worldIdReferralCode: 'AAA99BB'
+}
+Google user exists, updating: 64bf95bf-ac87-4a60-916f-c8145808ca96
+✅ Success response: {
+  "success": true,
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "referralCode": "AAA99BB"
+  }
+}
+=== END REFERRAL CODE UPDATE ===
+
+9:02:31 AM [express] POST /api/user/referral-code 200 in 36ms :: {"success":true,"user":{"id":"64bf9…
+Session middleware - ID: ghBz-Iw0VbjnVIhvV6eixra9ulVUNuHg
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:35.791Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Looking for user with email: korr@aq1.co
+Found user: 64bf95bf-ac87-4a60-916f-c8145808ca96 Thananon N. AAA99BB
+9:02:35 AM [express] GET /api/debug/user/korr@aq1.co 200 in 5ms :: {"found":true,"user":{"id":"64bf9…
+Session middleware - ID: 0v-t7ADA-2z7BN1h5S3huRidR7jCVFkG
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:43.297Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+Google auth request: {
+  uid: 'yzQ3KSK0itQW9FwKjOD6CMf9vpA3',
+  email: 'korr@aq1.co',
+  displayName: 'Thananon N.',
+  photoURL: null,
+  emailVerified: true
+}
+Creating/updating Google user: {
+  googleUid: 'yzQ3KSK0itQW9FwKjOD6CMf9vpA3',
+  email: 'korr@aq1.co',
+  name: 'Thananon N.',
+  photoURL: null,
+  emailVerified: true,
+  provider: 'google'
+}
+Google user exists, updating: 64bf95bf-ac87-4a60-916f-c8145808ca96
+Google user saved to database: 64bf95bf-ac87-4a60-916f-c8145808ca96
+Session after Google auth: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:43.297Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:02:43.299Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": "AAA99BB",
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:02:43.299Z"
+  }
+}
+Google auth session saved successfully with ID: 0v-t7ADA-2z7BN1h5S3huRidR7jCVFkG
+9:02:43 AM [express] POST /api/auth/google 200 in 5ms :: {"success":true,"user":{"id":"64bf95bf-ac87…
+Session middleware - ID: 0v-t7ADA-2z7BN1h5S3huRidR7jCVFkG
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:43.297Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:02:43.299Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": "AAA99BB",
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:02:43.299Z"
+  }
+}
+=== SESSION CHECK START ===
+Session ID: 0v-t7ADA-2z7BN1h5S3huRidR7jCVFkG
+Has session object: true
+Session keys: [ 'cookie', 'user' ]
+Full session: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:02:43.297Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "user": {
+    "id": "64bf95bf-ac87-4a60-916f-c8145808ca96",
+    "name": "Thananon N.",
+    "email": "korr@aq1.co",
+    "emailVerified": "2025-09-18T02:02:43.299Z",
+    "image": null,
+    "photoURL": null,
+    "worldIdNullifierHash": null,
+    "worldIdVerified": false,
+    "verificationLevel": null,
+    "worldIdReferralCode": "AAA99BB",
+    "googleUid": "yzQ3KSK0itQW9FwKjOD6CMf9vpA3",
+    "provider": "google",
+    "createdAt": "2025-09-18T01:33:10.641Z",
+    "updatedAt": "2025-09-18T02:02:43.299Z"
+  }
+}
+Cookies: worldref.sid=s%3A0v-t7ADA-2z7BN1h5S3huRidR7jCVFkG.Di%2FY1SEJjAvrUveBMfwj5SNnruMDpw0ZWFEpw6qH7vg
+✅ Session user found: {
+  id: '64bf95bf-ac87-4a60-916f-c8145808ca96',
+  name: 'Thananon N.',
+  worldIdVerified: false
+}
+Sending session data: {
+  user: {
+    id: '64bf95bf-ac87-4a60-916f-c8145808ca96',
+    name: 'Thananon N.',
+    email: 'korr@aq1.co',
+    worldIdVerified: false,
+    verificationLevel: null,
+    worldIdNullifierHash: null,
+    worldIdReferralCode: 'AAA99BB'
+  },
+  expires: '2025-10-18T02:02:50.674Z'
+}
+=== SESSION CHECK END ===
+
+9:02:50 AM [express] GET /api/auth/session 200 in 1ms :: {"user":{"id":"64bf95bf-ac87-4a60-916f-c814…
+Session middleware - ID: cGWJ6unXvw0_EuwfCQgbX-dMvocM4gpL
+Session data: {
+  "cookie": {
+    "originalMaxAge": 2592000000,
+    "expires": "2025-10-18T02:04:25.048Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+09:04:25 [vite] Pre-transform error: Failed to load url /src/main.tsx?v=vWUVLPeJplPpW9cowMTUJ (resolved id: /src/main.tsx?v=vWUVLPeJplPpW9cowMTUJ). Does the file exist?

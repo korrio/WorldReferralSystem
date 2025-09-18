@@ -1,6 +1,11 @@
 import { config } from "dotenv";
 import { resolve } from "path";
 
+// Set NODE_ENV to production by default if not specified
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production';
+}
+
 // Load environment variables first
 config({ path: resolve(process.cwd(), '.env') });
 

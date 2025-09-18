@@ -53,7 +53,7 @@ export default function Profile() {
       // For now, we'll create mock member data for the authenticated user
       // In a real app, you'd link the World ID user to a member record
       // Generate the actual World ID referral link if user has referral code
-      const userReferralCode = (session.user as any).worldIdReferralCode;
+      const userReferralCode = session.user.worldIdReferralCode;
       const referralLink = userReferralCode 
         ? `https://worldcoin.org/join/${userReferralCode}`
         : null;
@@ -125,15 +125,19 @@ export default function Profile() {
     setIsSavingReferralCode(true);
     
     try {
-      console.log("Sending referral code update request...");
-      console.log("Session user:", JSON.stringify(session.user, null, 2));
+      if (import.meta.env.DEV) {
+        console.log("Sending referral code update request...");
+        console.log("Session user:", JSON.stringify(session.user, null, 2));
+      }
       
       const requestBody = {
-        nullifierHash: (session.user as any).worldIdNullifierHash,
+        nullifierHash: session.user.worldIdNullifierHash,
         referralCode: referralCode.trim()
       };
       
-      console.log("Request body:", JSON.stringify(requestBody, null, 2));
+      if (import.meta.env.DEV) {
+        console.log("Request body:", JSON.stringify(requestBody, null, 2));
+      }
       
       const response = await fetch('/api/user/referral-code', {
         method: 'POST',
@@ -143,11 +147,15 @@ export default function Profile() {
         body: JSON.stringify(requestBody),
       });
 
-      console.log("Response status:", response.status);
-      console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+      if (import.meta.env.DEV) {
+        console.log("Response status:", response.status);
+        console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+      }
       
       const responseText = await response.text();
-      console.log("Raw response:", responseText);
+      if (import.meta.env.DEV) {
+        console.log("Raw response:", responseText);
+      }
       
       let data;
       try {

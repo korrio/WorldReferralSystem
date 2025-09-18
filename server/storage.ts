@@ -518,21 +518,34 @@ class DbStorage implements IStorage {
       
       if (existingUser) {
         console.log('Google user exists, updating:', existingUser.id);
+        console.log('Existing user referral code:', existingUser.worldIdReferralCode);
         
-        // Update existing user
+        // Update existing user - preserve referral code if not provided
+        const updateData: any = {
+          name: userData.name,
+          email: userData.email,
+          photoURL: userData.photoURL,
+          emailVerified: userData.emailVerified ? new Date() : null, // Convert boolean to timestamp
+          updatedAt: new Date(),
+        };
+        
+        // Only update referral code if it's explicitly provided, otherwise preserve existing
+        if (userData.worldIdReferralCode !== undefined) {
+          updateData.worldIdReferralCode = userData.worldIdReferralCode;
+          console.log('Updating referral code to:', userData.worldIdReferralCode);
+        } else {
+          // Preserve existing referral code
+          updateData.worldIdReferralCode = existingUser.worldIdReferralCode;
+          console.log('Preserving existing referral code:', existingUser.worldIdReferralCode);
+        }
+        
         const updatedUsers = await db
           .update(users)
-          .set({
-            name: userData.name,
-            email: userData.email,
-            photoURL: userData.photoURL,
-            emailVerified: userData.emailVerified ? new Date() : null, // Convert boolean to timestamp
-            worldIdReferralCode: userData.worldIdReferralCode || null, // Include referral code update
-            updatedAt: new Date(),
-          })
+          .set(updateData)
           .where(eq(users.googleUid, userData.googleUid))
           .returning();
         
+        console.log('Updated user referral code:', updatedUsers[0].worldIdReferralCode);
         return updatedUsers[0];
       } else {
         console.log('Creating new Google user');
