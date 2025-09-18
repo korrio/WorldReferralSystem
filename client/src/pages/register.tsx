@@ -30,7 +30,11 @@ export default function Register() {
       session_data: session,
       timestamp: new Date().toISOString()
     };
-    setDebugInfo(`Initial World ID Config:\n${JSON.stringify(config, null, 2)}`);
+    
+    // Only set debug info in development
+    if (import.meta.env.DEV) {
+      setDebugInfo(`Initial World ID Config:\n${JSON.stringify(config, null, 2)}`);
+    }
     console.log("World ID Configuration:", config);
   }, [session, status]);
 
@@ -78,7 +82,11 @@ export default function Register() {
   const onVerifyError = (error: any) => {
     setIsLoading(false);
     console.error("World ID Verification Error:", error);
-    setDebugInfo(`Error Details:\n${JSON.stringify(error, null, 2)}`);
+    
+    // Only set debug info in development
+    if (import.meta.env.DEV) {
+      setDebugInfo(`Error Details:\n${JSON.stringify(error, null, 2)}`);
+    }
     
     // Handle specific bridge 404 error
     if (error?.message?.includes('bridge.worldcoin.org') || 
@@ -91,8 +99,10 @@ export default function Register() {
         type: "error"
       });
       
-      // Add user-friendly explanation to debug info
-      setDebugInfo(prev => prev + `\n\n=== User-Friendly Info ===\nBridge 404 Error: This is a known World ID infrastructure issue that doesn't affect the core verification process. Your verification may have actually succeeded despite this error.`);
+      // Add user-friendly explanation to debug info (dev only)
+      if (import.meta.env.DEV) {
+        setDebugInfo(prev => prev + `\n\n=== User-Friendly Info ===\nBridge 404 Error: This is a known World ID infrastructure issue that doesn't affect the core verification process. Your verification may have actually succeeded despite this error.`);
+      }
       
       return;
     }
@@ -106,7 +116,11 @@ export default function Register() {
       isVisible: true,
       type: "success"
     });
-    setDebugInfo(`Random Referral Link:\n${JSON.stringify(data, null, 2)}`);
+    
+    // Only set debug info in development
+    if (import.meta.env.DEV) {
+      setDebugInfo(`Random Referral Link:\n${JSON.stringify(data, null, 2)}`);
+    }
   };
 
   const handleRandomReferralError = (error: string) => {
@@ -144,7 +158,11 @@ export default function Register() {
 
       if (response.ok) {
         const result = await response.json();
-        setDebugInfo(`Google Auth Success:\n${JSON.stringify(result, null, 2)}`);
+        
+        // Only set debug info in development
+        if (import.meta.env.DEV) {
+          setDebugInfo(`Google Auth Success:\n${JSON.stringify(result, null, 2)}`);
+        }
         
         // Refresh session and navigate to profile
         refreshSession();
@@ -172,7 +190,11 @@ export default function Register() {
       isVisible: true,
       type: "error"
     });
-    setDebugInfo(`Google Auth Error: ${error}`);
+    
+    // Only set debug info in development
+    if (import.meta.env.DEV) {
+      setDebugInfo(`Google Auth Error: ${error}`);
+    }
   };
 
   return (
@@ -260,7 +282,11 @@ export default function Register() {
                   enableTelemetry
                   handleVerify={async (proof) => {
                     console.log("World ID Proof:", proof);
-                    setDebugInfo(JSON.stringify(proof, null, 2));
+                    
+                    // Only set debug info in development
+                    if (import.meta.env.DEV) {
+                      setDebugInfo(JSON.stringify(proof, null, 2));
+                    }
                     return Promise.resolve();
                   }}
                   onInitSuccess={() => {
@@ -270,7 +296,11 @@ export default function Register() {
                       action: WORLD_ID_CONFIG.action,
                       verification_level: WORLD_ID_CONFIG.verification_level
                     };
-                    setDebugInfo(`World ID Config:\n${JSON.stringify(config, null, 2)}`);
+                    
+                    // Only set debug info in development
+                    if (import.meta.env.DEV) {
+                      setDebugInfo(`World ID Config:\n${JSON.stringify(config, null, 2)}`);
+                    }
                   }}
                 >
                   {({ open }) => (
@@ -326,8 +356,8 @@ export default function Register() {
             </CardContent>
           </Card>
 
-          {/* Debug Section */}
-          {debugInfo && (
+          {/* Debug Section - Only show in development */}
+          {debugInfo && import.meta.env.DEV && (
             <Card className="mt-6 bg-gray-50">
               <CardHeader>
                 <CardTitle className="text-sm text-gray-600">Debug Information</CardTitle>
@@ -353,7 +383,11 @@ export default function Register() {
                         isVisible: true,
                         type: "success"
                       });
-                      setDebugInfo(prev => prev + `\n\nDeep Link URL:\n${deepLink}`);
+                      
+                      // Only update debug info in development
+                      if (import.meta.env.DEV) {
+                        setDebugInfo(prev => prev + `\n\nDeep Link URL:\n${deepLink}`);
+                      }
                     }}
                     variant="outline"
                     size="sm"

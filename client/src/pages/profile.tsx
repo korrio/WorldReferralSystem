@@ -163,11 +163,16 @@ export default function Profile() {
         });
         setIsEditingReferralCode(false);
         
-        // Update the member data
+        // Update the member data with both referral code and link
+        const trimmedCode = referralCode.trim();
         setMemberData(prev => ({
           ...prev,
-          worldIdReferralCode: referralCode.trim()
+          worldIdReferralCode: trimmedCode,
+          referralLink: `https://worldcoin.org/join/${trimmedCode}`
         }));
+        
+        // Refresh session to get updated user data
+        refreshSession();
       } else {
         throw new Error(data.error || 'Failed to save referral code');
       }
